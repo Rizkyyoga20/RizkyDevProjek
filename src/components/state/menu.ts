@@ -1,8 +1,7 @@
 import { defineStore} from "pinia";
-import { DaftarMenu } from "../server/types/menu";
+import { useFetch, useStorage } from '@vueuse/core';
 import  ListDaftarMenu from "../server/apiConfig/menu"
 import ResponseData from "../server/res/index"
-import { API } from "../server/services/menu";
 import { ref } from "vue";
 
 export const useMenusStore = defineStore("MenusStore", {
@@ -20,7 +19,8 @@ export const useMenusStore = defineStore("MenusStore", {
           state.Menus2,
           state.Menus3
         ) 
-      }
+    },
+  
   },
   actions: {
 

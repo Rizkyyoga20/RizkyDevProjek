@@ -8,14 +8,6 @@ import Card from '../../ui desain/card.vue'
 
 const store = useMenusStore();
 
-/*
-watch(Search, (newQuery) => {
-  SearchQuery.value = store.Menus1.filter(
-      Menus => Menus.strMeal.toLowerCase().includes(newQuery.toLowerCase())
-  );
-});
-*/
-
 const getMenus = computed(() => {
   return store.getMenus;
 });
@@ -38,8 +30,13 @@ onMounted(() => {
   store.fetchMenus3();
 });
 
-  
+
+//frontand tampalte
 //https://tailwindflex.com/
+
+
+//state pinia
+//https://github.com/orgs/vuejs/discussions/9606
 //https://medium.com/@kisora.thomas/building-a-filter-based-search-with-vue-js-pinia-and-usestorage-a058d02d880b
 //https://stackoverflow.com/questions/75372018/can-you-use-pinia-in-composition-apis-script-setup-tags
 </script>
@@ -56,7 +53,8 @@ onMounted(() => {
 <div class="relative w-full bottom-5">
   <input 
     type="text" 
-    placeholder="search"
+    placeholder="Search"
+    v-model="Search"
     class="
       bg-gray-200
       border 
@@ -96,173 +94,194 @@ onMounted(() => {
   </button>
 </div>
 
+<div v-if="Search">
+  <div class="box" v-for="result in SearchQuery" :key="result.id" :data="result"/>
+</div>
 
-  <div 
-    class="
-      container 
-      mx-auto 
-      px-4
-    "
-  >
 
-      
+<div 
+  class="
+  p-1 
+  flex 
+  flex-wrap 
+  items-center 
+  justify-center
+  "
+>
+
+
       <div 
         class="
-          grid 
-          grid-cols-1 
-          md:grid-cols-3 
-          gap-8
+          rounded 
+          overflow-hidden 
+          shadow-lg 
+          flex 
+          flex-col 
+          lg:w-3/12 
+          xs:w-full 
+          m-2
         "
+        v-for="ListMenu1 in ListMenus1"
       >
-
-          <div 
-            class="
-              bg-white 
-              rounded-lg 
-              shadow-md 
-              overflow-hidden
-            "
-          >
-              
-              <div 
-                class="
-                  p-6
-                "
-              >
-
-
-              <div 
-              class="
-                p-1 
-                flex 
-                flex-wrap 
-                items-center 
-                justify-start
-              "
-            >
-          
-          <div 
-            class="
-              flex-shrink-0
-              m-7
-              lg:w-60
-              xs:w-full
-              bg-white 
-              shadow-md 
-              rounded-xl 
-              duration-500 
-              hover:scale-105 
-              hover:shadow-xl
-              " 
-            v-for="ListMenu1 in ListMenus1"
-          >
-              <a href="#">
-                  <img 
-                    :src=ListMenu1.strMealThumb 
-                    alt="Product" 
-                    class="
-                      h-80
-                      lg:w-60
-                      xs:w-full
-                      object-cover 
-                      rounded-t-xl
-                    " 
-                  />
-
-                  <div 
-                    class="
-                      px-4 
-                      py-3 
-                      lg:w-60
-                      xs:w-full
-                    "
-                  >
-
-                  <span 
-                    class="
-                      text-gray-400 
-                      mr-3 
-                      uppercase
-                    "
-                  >
-                    Product
-                  </span>
-                  
-                    <p 
+          <a href="#"></a>
+          <div class="relative"><a href="#">
+                  <img :src=ListMenu1.strMealThumb
+                    class="w-full"  
+                    alt="Product">
+                  <div
                       class="
-                        text-lg 
-                        font-bold 
-                        text-black 
-                        truncate 
-                        block 
-                        capitalize
+                        hover:bg-transparent 
+                        transition 
+                        duration-300 
+                        absolute 
+                        bottom-0 
+                        top-0 
+                        right-0 
+                        left-0 
+                        bg-gray-900 
+                        opacity-25
                       "
                     >
-                      {{ ListMenu1.strMeal}}
-                    </p>
-                    
-                    <div 
+                  </div>
+              </a>
+              <a href="#!">
+                  <div
                       class="
-                        flex 
-                        items-center
+                        text-xs 
+                        absolute 
+                        top-0 
+                        right-0 
+                        bg-indigo-600 
+                        px-4 
+                        py-2 
+                        text-white 
+                        mt-3 
+                        mr-3 
+                        hover:bg-white 
+                        hover:text-indigo-600 
+                        transition 
+                        duration-500 
+                        ease-in-out
                       "
                     >
-                      <p 
-                        class="
-                          text-lg 
-                          font-semibold 
-                          text-black 
-                          cursor-auto 
-                          my-3
-                        "
-                      >
-                        Stok : {{ ListMenu1.idMeal }}
-                      </p>
-                          
-                      <div 
-                        class="
-                          ml-auto
-                        "
-                      >
-                        <svg 
-                          xmlns="http://www.w3.org/2000/svg" 
-                          width="20" 
-                          height="20"
-                          fill="currentColor" 
-                          class="bi bi-bag-plus" 
-                          viewBox="0 0 16 16"
-                        >                      
-                          <path 
-                            fill-rule="evenodd"
-                            d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                          <path
-                            d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                        </svg>
-                    
-                      </div>
-                    </div>
+                      Info Product
                   </div>
               </a>
           </div>
-      
-      
-      
-      
-      
-      
-      
-          </div>
+          <div class="
+                  px-6 
+                  py-4 
+                  mb-auto
+                "
+              >
 
-
-
-
-
+              <a href="#"
+                 class="
+                  leading-relaxed 
+                  text-base 
+                  text-black 
+                  dark:text-gray-300
+                 "
+              >
+              <div class="lg:h-20 xs:h-none">
+                {{ ListMenu1.strMeal}}
               </div>
+              </a>
+              <p class="text-gray-500 text-sm">
+                  ...
+  
+
+
+                </p>
           </div>
-
-
+          <div class="px-6 
+                      py-3 
+                      flex 
+                      flex-row 
+                      items-center 
+                      justify-between 
+                      bg-gray-100
+                    "
+                  >
+              <span 
+                href="#" 
+                class="
+                  py-1 
+                  text-xs 
+                  font-regular 
+                  text-gray-900 
+                  mr-1 
+                  flex 
+                  flex-row 
+                  items-center
+                "
+              >
+                  <svg 
+                    height="13px" 
+                    width="13px" 
+                    version="1.1" 
+                    id="Layer_1"
+                      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                      y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
+                      xml:space="preserve"
+                  >
+                      <g>
+                          <g>
+                              <path
+                                  d="M256,0C114.837,0,0,114.837,0,256s114.837,256,256,256s256-114.837,256-256S397.163,0,256,0z M277.333,256 c0,11.797-9.536,21.333-21.333,21.333h-85.333c-11.797,0-21.333-9.536-21.333-21.333s9.536-21.333,21.333-21.333h64v-128 c0-11.797,9.536-21.333,21.333-21.333s21.333,9.536,21.333,21.333V256z">
+                              </path>
+                          </g>
+                      </g>
+                  </svg>
+                  <span class="ml-1">{{ ListMenu1.idMeal }} Stok</span>
+              </span>
+                <!-- 
+                <span class="ml-1">
+                  <button class="p-1 m-1 rounded-sm">+</button>
+                  <input class="rounded-sm w-10 border border-black" type="text" />
+                  <button class="p-1 m-1 rounded-sm">-</button>
+                </span>
+                -->
+          </div>
       </div>
-  </div>
+
+
+</div>
+
+<a href="#" 
+   class="
+      items-center 
+      justify-center 
+      inline-flex
+      mb-5
+      mt-20
+      text-d
+    ">
+  <svg 
+  class=" 
+    text-gray-800 
+    dark:text-white
+    bg-green-500 p-2
+    w-12
+    h-12
+    rounded-full 
+  " 
+  aria-hidden="true" 
+  xmlns="http://www.w3.org/2000/svg" 
+  fill="none" 
+  viewBox="0 0 14 8"
+  >
+  <path 
+    stroke="currentColor" 
+    stroke-linecap="round" 
+    stroke-linejoin="round" 
+    stroke-width="2" 
+    d="M13 7 7.674 1.3a.91.91 0 0 0-1.348 0L1 7"
+  />
+  </svg>
+</a>
+
+
 </section>
 
 </template>
