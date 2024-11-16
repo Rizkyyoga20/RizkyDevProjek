@@ -118,7 +118,7 @@ onMounted(() => {
           flex 
           flex-col 
           lg:w-3/12 
-          xs:w-full 
+          xs:w-2/12 
           m-2
         "
         v-for="ListMenu1 in ListMenus1"
@@ -235,13 +235,16 @@ onMounted(() => {
                   </svg>
                   <span class="ml-1">{{ ListMenu1.idMeal }} Stok</span>
               </span>
+              <span class="ml-1">
+                <a :href="'https://api.whatsapp.com/send?phone=+6287763578343&text=Hello, saya mau pesan '+ ListMenu1.strMeal">
+                  <img src="../../../assets/img/wa.png" class="w-7" />
+                </a>    
                 <!-- 
-                <span class="ml-1">
-                  <button class="p-1 m-1 rounded-sm">+</button>
-                  <input class="rounded-sm w-10 border border-black" type="text" />
-                  <button class="p-1 m-1 rounded-sm">-</button>
-                </span>
-                -->
+                <button class="p-1 m-1 rounded-sm">+</button>
+                <input class="rounded-sm w-10 border border-black" type="text" />
+                <button class="p-1 m-1 rounded-sm">-</button>
+                ------->
+              </span>
           </div>
       </div>
 
