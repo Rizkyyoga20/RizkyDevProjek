@@ -1,24 +1,15 @@
 <script setup>
 
-
-
 import { ref, onMounted, computed, watch } from "vue";
-import { useMenusStore } from "../../state/menu";
+import { useMenusStore } from "../../store/menu";
 import Card from '../../ui desain/card.vue'
 
 const store = useMenusStore();
 
-/*
-watch(Search, (newQuery) => {
-  SearchQuery.value = store.Menus1.filter(
-      Menus => Menus.strMeal.toLowerCase().includes(newQuery.toLowerCase())
-  );
-});
-*/
-
 const getMenus = computed(() => {
   return store.getMenus;
 });
+
 
 const ListMenus1 = computed(() => {
   return store.Menus1;
@@ -28,14 +19,10 @@ const ListMenus2 = computed(() => {
   return store.Menus2;
 });
 
-const ListMenus3 = computed(() => {
-  return store.Menus3;
-});
 
 onMounted(() => {
   store.fetchMenus1();
   store.fetchMenus2();
-  store.fetchMenus3();
 });
 
   
@@ -107,6 +94,7 @@ onMounted(() => {
               md:w-1/2 
               mb-8 
               md:mb-0
+              py-10
             "
           >
 
@@ -304,7 +292,7 @@ onMounted(() => {
           flex 
           flex-col 
           lg:w-3/12 
-          xs:w-6/12 
+          xs:w-full 
           m-2
         "
         v-for="ListMenu1 in ListMenus1"

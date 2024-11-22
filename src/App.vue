@@ -34,11 +34,64 @@
         position:fixed;
       "  
     >
+      <div class="NoSitebar">
         <RouterLink to="/" style="text-decoration:none; padding:5px 10px;">Home</RouterLink>
         <RouterLink to="/about" style="text-decoration:none; padding:5px 10px;">About</RouterLink>
         <RouterLink to="/galery" style="text-decoration:none; padding:5px 10px;">Galery</RouterLink>
 
+
+
+
+
+
+
+      </div>
+
+      <div class="Sitebar">
+        <div class="relative inline-block text-left">
+            <div class="group">
+                <button type="button"
+                    class="inline-block justify-center items-center w-full text-sm font-medium focus:outline-none">
+                    <img src="./assets/img/home-white.png" class="w-5" />
+                </button>
+        
+                <!-- Dropdown menu -->
+                <div
+                class="
+                  absolute 
+                  left-0 
+                  w-40 
+                  mt-1 
+                  origin-top-left 
+                  bg-white 
+                  divide-y 
+                  divide-gray-100 
+                  shadow-lg 
+                  opacity-0 
+                  invisible 
+                  group-hover:opacity-100 
+                  group-hover:visible 
+                  transition 
+                  duration-300
+                "
+              >
+                <div class="py-1 top-0">
+                <RouterLink to="/" class="block p-3">Home</RouterLink>
+                <RouterLink to="/about" class="block p-3">About</RouterLink>
+                <RouterLink to="/galery" class="block p-3">Galery</RouterLink>
+                </div>
+                </div>
+
+            </div>
+        </div>
+      </div>
+
+
     </div>
+
+
+
+
   </div>
 
 
@@ -67,4 +120,22 @@
   .logo.vue:hover {
     filter: drop-shadow(0 0 2em #42b883aa);
   }
+
+.Sitebar{
+  display:none;
+}
+
+.NoSitebar{
+  display:block;
+}
+
+@media screen and (max-width: 992px) {
+  .Sitebar{
+    display:block;
+  }
+  .NoSitebar{
+    display:none;
+  }
+}
+
 </style>

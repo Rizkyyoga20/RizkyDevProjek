@@ -1,42 +1,26 @@
 import { defineStore} from "pinia";
-import { useFetch, useStorage } from '@vueuse/core';
 import  ListDaftarMenu from "../server/apiConfig/menu"
 import ResponseData from "../server/res/index"
-import { ref } from "vue";
 
 export const useMenusStore = defineStore("MenusStore", {
 
   state: () => ({
-      Search: ref(''),
       Menus1: [],
       Menus2: [],
-      Menus3: [],
   }),
   getters: {
     getMenus(state){
         return(
           state.Menus1,
-          state.Menus2,
-          state.Menus3
+          state.Menus2
         ) 
     },
   
   },
   actions: {
 
-    async fetchMenus2() {
-      ListDaftarMenu.DaftarCanadian()
-      .then((response: ResponseData) => {
-        this.Menus2 = response.data.meals; 
-        console.log(response.data.meals);
-      })
-      .catch((e: Error) => {
-        console.log(e);
-      });
-    },
-
     async fetchMenus1() {
-      ListDaftarMenu.DaftarSeafood()
+      await ListDaftarMenu.DaftarSeafood()
       .then((response: ResponseData) => {
         this.Menus1 = response.data.meals; 
         console.log(response.data.meals);
@@ -46,10 +30,10 @@ export const useMenusStore = defineStore("MenusStore", {
       });
     },
 
-    async fetchMenus3() {
+    async fetchMenus2() {
       ListDaftarMenu.DaftarChickenBreast()
       .then((response: ResponseData) => {
-        this.Menus3 = response.data.meals; 
+        this.Menus2 = response.data.meals; 
         console.log(response.data.meals);
       })
       .catch((e: Error) => {
@@ -62,9 +46,6 @@ export const useMenusStore = defineStore("MenusStore", {
 
 
 })
-
-
-
   
 //https://dev.to/carlomigueldy/getting-started-with-vue-3-pinia-store-typescript-by-building-a-grocery-list-app-19km
 //https://stackoverflow.com/questions/76964046/using-onmounted-and-axios-requests-in-pinia
