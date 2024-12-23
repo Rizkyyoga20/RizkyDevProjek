@@ -4,6 +4,7 @@ import About from '../page/about/index.vue'
 import Galery from '../page/galery/index.vue'
 import Seaceh from '../page/search/index.vue'
 
+
 const routes = [
   { path: '/', name: 'home', component: HomeView },
   { path: '/about', name: 'about', component: About },

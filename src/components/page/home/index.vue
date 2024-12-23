@@ -1,38 +1,15 @@
-<script setup>
+<script setup lang="ts">
+  import { onMounted } from "vue";
+  import { useMenuStore } from "../../store/menu";
+  const menusStore = useMenuStore();
 
-import { ref, onMounted, computed, watch } from "vue";
-import { useMenusStore } from "../../store/menu";
-import Card from '../../ui desain/card.vue'
+  onMounted(() => {
+    menusStore.ListMenus1();
+  });
 
-const store = useMenusStore();
-
-const getMenus = computed(() => {
-  return store.getMenus;
-});
-
-
-const ListMenus1 = computed(() => {
-  return store.Menus1;
-});
-
-const ListMenus2 = computed(() => {
-  return store.Menus2;
-});
-
-
-onMounted(() => {
-  store.fetchMenus1();
-  store.fetchMenus2();
-});
-
-  
-//https://tailwindflex.com/
-//https://medium.com/@kisora.thomas/building-a-filter-based-search-with-vue-js-pinia-and-usestorage-a058d02d880b
-//https://stackoverflow.com/questions/75372018/can-you-use-pinia-in-composition-apis-script-setup-tags
 </script>
 
 <template>
-
 <!-- Hero section -->
 <section 
   class="
@@ -163,7 +140,7 @@ onMounted(() => {
                 "
               >
                 From hand-picked farms to your cup, we source the finest beans and
-                roast them to perfection.
+                roast them to perfection. 
               </p>
 
 
@@ -238,6 +215,7 @@ onMounted(() => {
 
 <!-- Featured section -->
 
+
 <section 
   class="
     py-20
@@ -261,6 +239,7 @@ onMounted(() => {
         "
       >
         Products Seafood
+
       </h2>
       
 
@@ -284,6 +263,8 @@ onMounted(() => {
 >
 
 
+
+
       <div 
         class="
           rounded 
@@ -295,13 +276,11 @@ onMounted(() => {
           xs:w-full 
           m-2
         "
-        v-for="ListMenu1 in ListMenus1"
+        v-for="ListMenu1 in menusStore.Menu1"
       >
           <a href="#"></a>
           <div class="relative"><a href="#">
-                  <img :src=ListMenu1.strMealThumb
-                    class="w-full"  
-                    alt="Product">
+                  <img :src="''+ListMenu1.strMealThumb" class="w-full" />
                   <div
                       class="
                         hover:bg-transparent 
@@ -358,15 +337,24 @@ onMounted(() => {
                  "
               >
               <div class="lg:h-20 xs:h-none">
-                {{ ListMenu1.strMeal}}
+                {{ ListMenu1.strMeal }}
               </div>
               </a>
               <p class="text-gray-500 text-sm">
-                  ...
-  
-
-
-                </p>
+                <button class="p-1 m-1 rounded-sm" @click="menusStore.tambahPesanan">+</button>
+                <input 
+                  class="
+                    rounded-sm 
+                    border 
+                    border-black 
+                    text-center
+                    w-10 
+                  " 
+                  type="text" 
+                  v-model="menusStore.jumlahPesan"
+                />
+                <button class="p-1 m-1 rounded-sm" @click="menusStore.kurangiPesanan">-</button>
+              </p>
           </div>
           <div class="px-6 
                       py-3 
@@ -414,15 +402,10 @@ onMounted(() => {
                   <a :href="'https://api.whatsapp.com/send?phone=+6287763578343&text=Hello, saya mau pesan '+ ListMenu1.strMeal">
                     <img src="../../../assets/img/wa.png" class="w-7" />
                   </a>    
-                  <!-- 
-                  <button class="p-1 m-1 rounded-sm">+</button>
-                  <input class="rounded-sm w-10 border border-black" type="text" />
-                  <button class="p-1 m-1 rounded-sm">-</button>
-                  ------->
+
                 </span>
           </div>
       </div>
-
 
 </div>
 </div>
