@@ -1,12 +1,21 @@
 <script setup lang="ts">
-  import { onMounted } from "vue";
+  import { onMounted, ref } from "vue";
   import { useMenuStore } from "../store/menu";
   const menusStore = useMenuStore();
+  const Pesan = ref(0);
+  const total = menusStore.total()
+
+  async function TambahPesanan() {
+    return total
+    return Pesan.value++
+  };
 
   onMounted(() => {
     menusStore.ListMenus2();
   });
+
 </script>
+
 
 <template>
 <div
@@ -20,7 +29,7 @@
   >
   
     <div
-      v-for="ListMenu1 in menusStore.readData2" 
+      v-for="(ListMenu1, index) in menusStore.readData2" :key="index" 
       class="
         rounded 
         overflow-hidden 
@@ -98,7 +107,7 @@
         </div>
         </a>
         <p class="text-gray-500 text-sm">
-          <button class="p-1 m-1 rounded-sm" @click="menusStore.tambahPesanan">+</button>
+          <button class="p-1 m-1 rounded-sm" index @click="TambahPesanan">+ {{index}}</button>
           <input 
             class="
               rounded-sm 
@@ -108,9 +117,10 @@
               w-10 
             " 
             type="text" 
-            v-model="menusStore.jumlahPesan"
+            :key=(index)
+            v-model="Pesan"
           />
-          <button class="p-1 m-1 rounded-sm" @click="menusStore.kurangiPesanan">-</button>
+          <button class="p-1 m-1 rounded-sm" @click="Pesan--">-</button>
         </p>
     </div>
     <div class="px-6 

@@ -1,3 +1,8 @@
-export default interface ResponseData {
-    data: any;
+export interface ResponseMenusApi<T> {
+    meals: T
 }
+
+export interface ResponseUnsplasApi<T> {
+    results: T;
+}
+  

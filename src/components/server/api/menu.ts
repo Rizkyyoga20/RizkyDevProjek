@@ -1,5 +1,11 @@
 import axios from 'axios';
-const instance = axios.create({
+
+const menuApi = axios.create({
   baseURL: import.meta.env.VITE_VUE_API_MENU,
 });
-export default instance
+
+const unsplashApi = axios.create({
+  baseURL: import.meta.env.VITE_VUE_API_UNSPLASH,
+});
+
+export { menuApi, unsplashApi };
