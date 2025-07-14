@@ -15,10 +15,12 @@
     "browserslist": "^4.25.0",
     "caniuse-lite": "^1.0.30001723",
     "dotenv": "^16.4.5",
+    "echarts": "^5.6.0",
     "path": "^0.12.7",
     "pinia": "^2.2.2",
     "vue": "^3.4.37",
     "vue-emit": "^1.1.0",
+    "vue-print-nb": "^1.7.5",
     "vue-router": "^4.4.5",
     "vuex": "^4.1.0"
   },

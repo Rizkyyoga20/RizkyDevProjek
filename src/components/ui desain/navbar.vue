@@ -137,7 +137,11 @@ watch( () => Modal.ModalId, (newValue) => {
             md:rounded
         "
         >
+	<!---
         <a href="tel:+6287763578343">
+	--->
+        <a href="https://api.whatsapp.com/send?phone=6287763578343&text=Hello, Test kirim pesan ke WhatsApp" target="_blank">
+	
             <div class="flex justify-end">
                 <div 
                     class="
