@@ -43,7 +43,7 @@ const props = defineProps({
         class="bg-blue-600 rounded-sm float-end"
         @click="openUpdatePelanggan"
     >
-        <img src="../../../../../assets/img/android-chrome-192x192.PNG" class="w-5">
+        <img src="../../../../../assets/img/android-chrome-192x192.png" class="w-5">
     </button>
 
 
