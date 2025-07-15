@@ -4,7 +4,7 @@ import vue from '@vitejs/plugin-vue'
 // https://vitejs.dev/config/
 
 export default defineConfig({
-  assetsInclude: ['**/*.PNG'],
+  assetsInclude: ['**/*.{png,PNG}'],
   plugins: [
     vue(),
     //vueDevTools(),
