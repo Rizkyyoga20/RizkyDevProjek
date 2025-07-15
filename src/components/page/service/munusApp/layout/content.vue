@@ -157,7 +157,7 @@ onMounted(() => {
                 <button 
                     class="bg-blue-600 rounded-sm float-end"
                     @click="Modal.openModal('modalAddProduk', Number(ListMenu1.idMeal))"
-                ><img src="../../../../../assets/img/android-chrome-192x192.PNG" class="w-5"></button>
+                ><img src="../../../../../assets/img/android-chrome-192x192.png" class="w-5"></button>
                 <HargaProduk :idProduk="Number(ListMenu1.idMeal)" />              
             </div>
 
