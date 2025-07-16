@@ -3,14 +3,32 @@ import { useRoute } from 'vue-router';
 import './components/route'
 import Navbar from './components/ui desain/navbar.vue'
 import HeaderApp from './components/ui desain/headerApp.vue'
+import IsLoding from './components/ui desain/IsLoding.vue';
+import { onMounted, ref } from 'vue';
 const route = useRoute();
+
+
+const isLoading = ref(true);
+
+onMounted(async () => {
+  try {
+    // Kode untuk mengambil data
+    await new Promise(resolve => setTimeout(resolve, 3000)); // timeout 1 detik
+    isLoading.value = false;
+  } catch (error) {
+    console.error(error);
+    isLoading.value = false;
+  }
+});
+
 </script>
 
 <template>
-
-  <Navbar v-if="route.path === '/' || route.path === ''" />
-  <HeaderApp v-else />
-  
+  <IsLoding v-if="isLoading"/>
+  <div v-else>
+    <Navbar v-if="route.path === '/' || route.path === ''" />
+    <HeaderApp v-else />  
+  </div>  
 <main>
   <RouterView />
 </main>

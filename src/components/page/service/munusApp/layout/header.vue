@@ -30,7 +30,7 @@ watch( () => Modal.ModalId, (newValue) => {
     />
   <div class="relative">
   
-    <img src="../../../../../assets/img/what-is-web-development.png" class="w-full h-[200px]">
+    <img src="../../../../../assets/img/pikopi.jpg" class="w-full h-[200px]">
 
       <div class="absolute top-0 w-full flex">
       
