@@ -30,7 +30,7 @@ watch( () => Modal.ModalId, (newValue) => {
     />
   <div class="relative">
   
-    <img src="../../../../../assets/img/pikopi.jpg" class="w-full h-[200px]">
+    <div class="w-full h-[200px] bg-amber-700"></div>
 
       <div class="absolute top-0 w-full flex">
       
