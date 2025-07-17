@@ -7,6 +7,7 @@ import { Pesanan } from '../../../../interface/data';
 import HargaProduk from '../produk/hargaProduk.vue';
 import RadioButtomStyle from '../../../../ui desain/radioButtomStyle.vue';
 import RadioButtom from '../../../../ui desain/radioButtom.vue';
+import router from '../../../../route';
 
 const Modal = useModalPopUp();
 const Menu1Store = useMenu1Store();
@@ -74,7 +75,7 @@ function Kurang() {
 
 
 function refresh() {
-  window.history.go(0);
+  router.replace({name:'menusApp'});
 }
 
 async function PesanMenu() {
