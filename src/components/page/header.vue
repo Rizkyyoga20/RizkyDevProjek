@@ -21,7 +21,7 @@ watch( () => Modal.ModalId, (newValue) => {
         class="
             relative 
             w-full 
-            h-[900px] 
+            min-h-[900px]
             bg-orange-200
         " 
         id="home"

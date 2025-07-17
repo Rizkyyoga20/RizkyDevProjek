@@ -8,7 +8,14 @@ export default defineConfig({
   assetsInclude: ['**/*.{png,PNG,jpg,JPG,jpeg,JPEG,gif,GIF,svg,SVG}'],
   plugins: [
     vue(),
-    vercel(),
+    vercel({
+      routes: [
+        {
+          src: '/(.*)',
+          dest: '/index.html',
+        },
+      ],
+    }),
     //vueDevTools(),
   ],
 })
