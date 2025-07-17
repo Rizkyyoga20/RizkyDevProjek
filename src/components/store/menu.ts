@@ -5,6 +5,7 @@ import { AddHarga, AddPelanggan, DataMenu, Pesanan, UnsplasPhotos } from "../int
 import { ResponseMenusApi, ResponseUnsplasApi } from "../server/res";
 import { menuApi, unsplashApi } from '../server/api/menu'
 import { useStore } from "./menuDB";
+import router from "../route";
 
 export const useMenu1Store = defineStore('Menus', () => {
 
@@ -81,7 +82,7 @@ export const useMenu1Store = defineStore('Menus', () => {
     
     store.createDataMenus(data);
     handleError('Data berhasil disimpan', { success: true });
-    window.location.reload();    
+    router.replace({name:'menusApp'});    
   }
 
   function handleCreateDataProduks(data: AddHarga) {
@@ -92,7 +93,7 @@ export const useMenu1Store = defineStore('Menus', () => {
     ){
       store.createDataProduks(data);
       handleError('Data berhasil disimpan', { success: true });
-      window.location.reload();
+      router.replace({name:'menusApp'});
     } else {
       handleError('Data tidak lengkap atau format tidak sesuai!', { success: false });
     }
@@ -124,7 +125,7 @@ export const useMenu1Store = defineStore('Menus', () => {
     ){
       store.createDataPelanggan(data);
       handleError('Data berhasil disimpan', { success: true });
-      window.location.reload();
+      router.replace({name:'menusApp'});
     } else {
       handleError('Data tidak lengkap atau format tidak sesuai!', { success: false });
     }
@@ -140,7 +141,7 @@ export const useMenu1Store = defineStore('Menus', () => {
     ){
       store.updateDataPelanggan(id, data);
       handleError('Data berhasil diupdate', { success: true });
-      window.location.reload();
+      router.replace({name:'menusApp'});
     } else {
       handleError('Data tidak lengkap atau format tidak sesuai!', { success: false });
     }
