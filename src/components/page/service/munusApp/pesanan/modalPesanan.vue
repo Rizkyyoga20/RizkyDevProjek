@@ -74,7 +74,7 @@ function Kurang() {
 
 
 function refresh() {
-  window.location.reload();
+  window.history.go(0);
 }
 
 async function PesanMenu() {
