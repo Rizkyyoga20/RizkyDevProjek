@@ -21,9 +21,9 @@ watch( () => Modal.ModalId, (newValue) => {
         class="
             relative 
             w-full 
-            min-h-[900px]
             bg-orange-200
         " 
+        style="min-height:1200px;"
         id="home"
     >
         <div 
