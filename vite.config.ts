@@ -8,15 +8,14 @@ export default defineConfig({
   plugins: [
     vue(),
     vercel({
-      cleanUrls: true,
-      trailingSlash: false,
-      routes: [
+      redirects: [
         {
-          src: '/(.*)',
-          dest: '/index.html',
-          status: 200,
+          source: '/:path((?!index\\.html).*)',
+          destination: '/index.html',
+          permanent: false,
         },
       ],
     }),
   ],
 })
+
