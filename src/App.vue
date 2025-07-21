@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router';
 import './components/route'
-import Navbar from './components/ui desain/navbar.vue'
-import HeaderApp from './components/ui desain/headerApp.vue'
+import Router from './components/route/router.vue'
 import IsLoding from './components/ui desain/IsLoding.vue';
 import { onMounted, ref } from 'vue';
-const route = useRoute();
-
 
 const isLoading = ref(true);
 
@@ -25,14 +21,7 @@ onMounted(async () => {
 
 <template>
   <IsLoding v-if="isLoading"/>
-  <div v-else>
-    <Navbar v-if="route.path === '/' || route.path === ''" />
-    <HeaderApp v-else />  
-  </div>  
-<main>
-  <RouterView />
-</main>
-
+  <Router v-else/>
 </template>
 
 <style scoped>

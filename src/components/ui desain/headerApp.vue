@@ -75,6 +75,6 @@ watch( () => Modal.ModalId, (newValue) => {
 
 </nav>
     
-  </template>
+</template>
 
   
