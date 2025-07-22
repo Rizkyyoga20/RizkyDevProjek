@@ -33,6 +33,7 @@ watch( () => Modal.ModalId, (newValue) => {
                 opacity-70
             "
         >
+        <div style="margin-top:50px;">
             <img 
                 src="../../assets/img/rizky.PNG" 
                 alt="Background Image" 
@@ -46,6 +47,7 @@ watch( () => Modal.ModalId, (newValue) => {
                     lg:m-3 m-1
                 " 
             />
+        </div>
     
         </div>
         
@@ -67,9 +69,8 @@ watch( () => Modal.ModalId, (newValue) => {
                         font-medium 
                         leading-tight 
                         mb-2
-                        mt-10
                     "
-                    style="font-family:Comic Sans MS; font-size:20px;"
+                    style="font-family:Comic Sans MS; font-size:20px; margin-top:100px;"
                 >Expert Me</h1>
                 
                 <p class="text-justify ml-3" style="font-size:15px;">

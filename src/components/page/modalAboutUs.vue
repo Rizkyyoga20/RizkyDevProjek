@@ -59,7 +59,16 @@ const Modal = useModalPopUp();
               class="rounded-full w-[100px] h-[100px] lg:m-3 m-1" 
             />
           </div>
-          
+
+          <div class="flex justify-center items-center">
+            <a href="https://github.com/Rizkyyoga20">
+              <img src="../../assets/img/github.png" class="w-[35px] p-1">
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=6287763578343&text=Hello, Test kirim pesan ke WhatsApp">
+              <img src="../../assets/img/wa.png" class="w-[35px] p-1">
+            </a>
+          </div>
+
           <p>
             Saya merupakan alumni Universitas Islam Negeri Raden Fatah Palembang pada tahun 2018 khususnya 
             pada jurusan sistem informasi. judul skripsi saya adalah sebuah sistem infomasi distribusi AMDK 

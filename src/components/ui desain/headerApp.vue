@@ -31,8 +31,14 @@ watch( () => Modal.ModalId, (newValue) => {
         items-center 
         justify-between 
         p-3 
+        w-full
         bg-[#e8e8e5]
     "
+
+    style="
+        position:fixed;
+        z-index:5;
+    " 
   >
     <!---
     <div 

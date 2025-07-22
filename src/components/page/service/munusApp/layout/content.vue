@@ -47,7 +47,18 @@ onMounted(() => {
     <ModalPesanan v-show="showModalPesanan" :ModalID="Modal.ModalId ?? 0" />
     <EditProduk v-show="showModalAddProduk" :ModalID="Modal.ModalId ?? 0" />
 
+
     <h2 class="text-2xl font-bold text-black text-center" style="margin-top:75px;">
+        
+        <div class="flex justify-center items-center">
+            <a href="https://github.com/Rizkyyoga20">
+              <img src="../../../../../assets/img/github.png" class="w-[35px] p-1">
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=6287763578343&text=Hello, Test kirim pesan ke WhatsApp">
+              <img src="../../../../../assets/img/wa.png" class="w-[35px] p-1">
+            </a>
+        </div>
+        
         Menus Seafood
     </h2>
 
