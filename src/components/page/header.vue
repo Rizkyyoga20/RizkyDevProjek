@@ -35,15 +35,14 @@ watch( () => Modal.ModalId, (newValue) => {
         >
         <div style="margin-top:50px;">
             <img 
-                src="../../assets/img/rizky.PNG" 
+                src="../../assets/img/maskot1.gif" 
                 alt="Background Image" 
                 class="
                     float-end
-                    rounded-full
-                    w-[100px]
-                    h-[100px]
-                    lg:w-[350px]
-                    lg:h-[350px]
+                    w-[110px]
+                    h-[110px]
+                    lg:w-[300px]
+                    lg:h-[300px]
                     lg:m-3 m-1
                 " 
             />

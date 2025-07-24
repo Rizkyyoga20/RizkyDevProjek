@@ -54,7 +54,7 @@ const Modal = useModalPopUp();
 
           <div class="flex justify-center items-center">
             <img 
-              src="../../assets/img/rizky.PNG" 
+              src="../../assets/img/maskot1.gif" 
               alt="Background Image" 
               class="rounded-full w-[100px] h-[100px] lg:m-3 m-1" 
             />

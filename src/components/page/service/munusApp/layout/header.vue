@@ -30,11 +30,11 @@ watch( () => Modal.ModalId, (newValue) => {
     />
   <div class="relative">
   
-    <div class="w-full h-[200px] bg-amber-700"></div>
+    <img src="../../../../../assets/img/kategori-makan.jpg" class="w-full h-[300px] bg-amber-700" />
 
       <div class="absolute top-0 w-full flex">
       
-        <div class="w-full" style="margin-top:170px;">
+        <div class="w-full" style="margin-top:270px;">
             <div class="ml-1 mr-1 lg:ml-20 lg:mr-20">
 
               <Search 
