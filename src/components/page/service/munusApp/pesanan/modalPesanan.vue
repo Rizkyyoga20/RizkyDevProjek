@@ -187,7 +187,12 @@ async function PesanMenu() {
                   >-</button>                
                 </p>
                 total Bayar : <b>Rp.{{ payload.totalBayar }}</b>
-                <RadioButtomStyle v-model="payload.status" :options="pesananOption" title="Status Pembayaran" />
+                
+                <RadioButtomStyle 
+                  v-model="payload.status" 
+                  :options="pesananOption" 
+                  title="Status Pembayaran" 
+                />
                                         
                 <div 
                     v-for="(List, index) in Menu1Store.dataPelanggan" 

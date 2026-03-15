@@ -20,7 +20,7 @@ export const useMenu1Store = defineStore('Menus', () => {
   const Search = ref('');
   const MenuID = ref();
   const MinPage = ref(1);
-  const MaxPage = ref(5);
+  const MaxPage = ref(10);
   const TotalPage = MenuSeafood.value.meals.length;
 
   //Pesan Menu
