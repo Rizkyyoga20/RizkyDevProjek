@@ -19,11 +19,26 @@ const maxId = Menu1Store.dataPelanggan.length === 0 ? 0 :
 const newId = maxId + 1;
 
 const tujuanSurat = ref('');
+const jenisSurat = ref('');
 const tujuanOption = ref([
   { value: 'Pangdam', text: 'Pangdam' },
   { value: 'Kesdam', text: 'Kesdam' },
   { value: 'Aspers', text: 'Aspers' },
 ]);
+
+const jenisOption = ref([
+  { value: 'BP(PUSAT)', text: 'BP(PUSAT)' },
+  { value: 'BM', text: 'BM' },
+  { value: 'BU', text: 'BU' },
+  { value: 'ST', text: 'ST' },
+  { value: 'KEP', text: 'KEP' },
+  { value: 'SPRINT', text: 'SPRINT' },
+  { value: 'SPENG', text: 'SPENG' },
+  { value: 'ND/SE/SI', text: 'ND/SE/SI' },
+  { value: 'UNDANGAN', text: 'UNDANGAN' },
+]);
+
+
 
 const payload = reactive<bukuAgenda>({
   noSurat: newId,
@@ -88,11 +103,13 @@ async function TambahPelanggan() {
       :options="tujuanOption" 
     />
 
-    <InputText
+    <SelectOption
+      class="pt-3 pb-3" 
       id="jenisSurat" 
-      label="jenisSurat" 
-      v-model="payload.jenisSurat" 
-      placeholder="Jenis Surat" 
+      label="-- Jenis Surat --" 
+      :modelValue="jenisSurat" 
+      @update:modelValue="jenisSurat = $event" 
+      :options="jenisOption" 
     />
 
     <InputText
