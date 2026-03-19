@@ -1,22 +1,11 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
-import { useMenu1Store } from '../../../../store/menu';
 import FromBottem from '../../../../ui desain/FromBottem.vue';
 import InputText from '../../../../ui desain/InputText.vue';
 import InputNumber from '../../../../ui desain/InputNumber.vue';
 import TextArea from '../../../../ui desain/TextArea.vue';
 import { bukuAgenda } from '../../../../interface/surat';
 import SelectOption from '../../../../ui desain/selectOption.vue';
-
-
-const Menu1Store = useMenu1Store();
-const maxId = Menu1Store.dataPelanggan.length === 0 ? 0 : 
-              Math.max(...Menu1Store.dataPelanggan.map(
-                (
-                  item: bukuAgenda
-                ) => item.noSurat
-              ));
-const newId = maxId + 1;
 
 const tujuanSurat = ref('');
 const jenisSurat = ref('');
@@ -41,7 +30,7 @@ const jenisOption = ref([
 
 
 const payload = reactive<bukuAgenda>({
-  noSurat: newId,
+  noSurat:'',
   nik:'',
   tglAgenda:'',
   jenisSurat:'',
@@ -57,7 +46,7 @@ const payload = reactive<bukuAgenda>({
 async function TambahPelanggan() {
   try {
     const agenda: bukuAgenda = {
-      noSurat: Number(payload.noSurat),
+      noSurat: String(payload.noSurat),
       nik: String(payload.nik),
       tglAgenda: String(payload.tglAgenda),
       jenisSurat: String(payload.jenisSurat),
@@ -79,6 +68,14 @@ async function TambahPelanggan() {
 </script>
 
 <template>
+
+  <InputText
+    id="noSurat" 
+    label="noSurat" 
+    v-model="payload.noSurat" 
+    placeholder="Nomor Surat" 
+  />
+
   <div class="pb-10">
     <TextArea 
       id="perihal" 

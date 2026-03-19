@@ -6,8 +6,7 @@
 
 
 <template>
-    <div class="grid lg:grid-cols-3 gap-2 p-2 relative">
-        <RouterLink to="/"> 
+    <div class="grid lg:grid-cols-4 gap-1 p-2 relative">
         <div class="bg-green-200">
             <div 
                 class="
@@ -20,12 +19,10 @@
                 "
                     
             >4</div>
-            <img src="../../../../../assets/img/gmail.png" class="w-10 float-left m-2" />
-            <p class="p-3" style="font-weight:500; font-size:20px;">Surat Hari Ini</p>
+            <img src="../../../../../assets/img/icon-save.png" class="w-10 float-left m-2" />
+            <p class="p-3" style="font-weight:500; font-size:20px;">Daftar Aganda</p>
         </div>
-        </RouterLink>
 
-        <RouterLink to="/"> 
         <div class="bg-green-200">
             <div 
                 class="
@@ -38,13 +35,10 @@
                 "
                     
             >30</div>
-            <img src="../../../../../assets/img/icon-save.png" class="w-10 float-left m-2" />
-            <p class="p-3" style="font-weight:500; font-size:20px;">Surat Bulan Ini</p>
+            <img src="../../../../../assets/img/data.png" class="w-10 float-left m-2" />
+            <p class="p-3" style="font-weight:500; font-size:20px;">Approved</p>
         </div>
-        </RouterLink>
 
-
-        <RouterLink to="/"> 
         <div class="bg-green-200">
             <div 
                 class="
@@ -57,10 +51,25 @@
                 "
                     
             >10</div>
-            <img src="../../../../../assets/img/data.png" class="w-10 float-left m-2" />
+            <img src="../../../../../assets/img/chat.png" class="w-10 float-left m-2" />
             <p class="p-3" style="font-weight:500; font-size:20px;">Surat Belum Diproses</p>
         </div>
-        </RouterLink>
+
+            <div class="bg-green-200">
+                <div 
+                    class="
+                        float-right 
+                        bg-red-400
+                    "
+                    style="
+                        padding:3px 7px;
+                        border-radius:0px 0px 0px 10px;
+                    "
+                        
+                >12</div>
+                <img src="../../../../../assets/img/icon-pelanggan.png" class="w-10 float-left m-2" />
+                <p class="p-3" style="font-weight:500; font-size:20px;">Akun</p>
+            </div>
 
     </div>
 

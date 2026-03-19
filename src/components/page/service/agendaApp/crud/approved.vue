@@ -2,11 +2,8 @@
 import { reactive } from 'vue';
 import { storeStatus } from '../../../../interface/surat';
 //import SelectOption from '../../../../ui desain/selectOption.vue';
-import { useMenu1Store } from '../../../../store/menu';
 
 //const statusAgenda = ref('');
-const Menu1Store = useMenu1Store();
-
 /*
 const statusOption = ref([
   { value: 'Sudah Selesai', text: 'Sudah Selesai' },
@@ -15,16 +12,9 @@ const statusOption = ref([
 ]);
 */
 
-const maxId = Menu1Store.dataPelanggan.length === 0 ? 0 : 
-              Math.max(...Menu1Store.dataPelanggan.map(
-                (
-                  item: storeStatus
-                ) => item.id
-              ));
-const newId = maxId + 1;
 
 const payload = reactive<storeStatus>({
-  id: newId ,
+  id: 0,
   idAgenda: 0,
   status:'',
   time:'',
@@ -48,7 +38,7 @@ async function TambahPelanggan() {
 </script>
 
 <template>
-  <div class="pb-10">
+  <div class="pb-10 overflow-x-auto">
 
   <table class="min-w-full divide-y divide-gray-200 overflow-x-auto">
       <thead class="bg-gray-50">
@@ -64,7 +54,7 @@ async function TambahPelanggan() {
               uppercase 
               tracking-wider
             "
-          > Nome </th>
+          > Pengirim </th>
           <th 
             scope="col" 
             class="
@@ -77,7 +67,7 @@ async function TambahPelanggan() {
               uppercase 
               tracking-wider
             "
-          > Produto </th>
+          > Surat </th>
           <th 
             scope="col" 
             class="
@@ -90,7 +80,7 @@ async function TambahPelanggan() {
               uppercase 
               tracking-wider
             "
-          > Tipo </th>
+          > Status </th>
           <th 
             scope="col" 
             class="
@@ -103,7 +93,7 @@ async function TambahPelanggan() {
               uppercase 
               tracking-wider
             "
-          > Lote </th>
+          > Nomor Surat </th>
           <th 
             scope="col" 
             class="
@@ -116,7 +106,7 @@ async function TambahPelanggan() {
               uppercase 
               tracking-wider
             "
-          > Quantidade </th>
+          > Tanggal </th>
           <th 
             scope="col" 
             class="
@@ -129,7 +119,7 @@ async function TambahPelanggan() {
               uppercase 
               tracking-wider
             "
-          > Ações </th>
+          > History </th>
           <th 
             scope="col" 
             class="
@@ -147,168 +137,214 @@ async function TambahPelanggan() {
         </tr>
       </thead>
       <tbody class="bg-white divide-y divide-gray-200">
-          <tr>
+
+        <tr>
               <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
                       <div class="flex-shrink-0 h-10 w-10">
-                          <img class="h-10 w-10 rounded-full" src="https://i.pravatar.cc/150?img=1" alt="">
+                          <img 
+                            class="h-10 w-10 rounded-full" 
+                            src="../../../../../assets/img/icon-pelanggan.png" 
+                            alt=""
+                          >
                       </div>
                       <div class="ml-4">
                           <div class="text-sm font-medium text-gray-900">
-                              Mariangela Assis
+                              1672026473647 | Rika Sari
                           </div>
                           <div class="text-sm text-gray-500">
-                              mariangela21@gmail.com
+                              rikas21@gmail.com | 0821362736273
                           </div>
                       </div>
                   </div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900">Fresubin Energy 1000ML</div>
-                  <div class="text-sm text-gray-500">Fresenius</div>
+                  <div class="text-sm text-gray-900">Prihal : acara dinas</div>
+                  <div class="text-sm text-gray-500">Pengdam | BP (PUSAT)</div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
                   <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                      Entrada
+                      ACC
                   </span>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  2AGAAA001D
+                B/12/III/2026
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  16 UN
+                  16/11/2025
               </td>
               <td class="px-6 py-4 whitespace-nowrap  text-sm font-medium">
-                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Ver detalhes</a>
-                  
+                  <a href="#" class="text-indigo-600 hover:text-indigo-900">View</a>
               </td>
-          </tr>
+        </tr>
   
-  
-  
-          <tr>
-              <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex items-center">
-                      <div class="flex-shrink-0 h-10 w-10">
-                          <img class="h-10 w-10 rounded-full" src="https://i.pravatar.cc/150?img=1" alt="">
-                      </div>
-                      <div class="ml-4">
-                          <div class="text-sm font-medium text-gray-900">
-                              Julia Lima
-                          </div>
-                          <div class="text-sm text-gray-500">
-                             julia@santacasabh.org.br
-                          </div>
-                      </div>
-                  </div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900">Novasource Senior 1000ML</div>
-                  <div class="text-sm text-gray-500">Nestle</div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                      Saída
-                  </span>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  3596SPZA70
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  2 UN
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap  text-sm font-medium">
-                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Ver detalhes</a>
-                  <a href="#" class="ml-2 text-red-600 hover:text-red-900"></a>
-              </td>
-          </tr>
-  
-  
-  
-          <tr>
-              <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex items-center">
-                      <div class="flex-shrink-0 h-10 w-10">
-                          <img class="h-10 w-10 rounded-full" src="https://i.pravatar.cc/150?img=1" alt="">
-                      </div>
-                      <div class="ml-4">
-                          <div class="text-sm font-medium text-gray-900">
-                              Miriam Alves
-                          </div>
-                          <div class="text-sm text-gray-500">
-                              miriam@santacasabh.org.br
-                          </div>
-                      </div>
-                  </div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900">Nutren Control Chocolate 380G</div>
-                  <div class="text-sm text-gray-500">Nestle</div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                      Entrada
-                  </span>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  2AGAAA001E	
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  100 UN
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap  text-sm font-medium">
-                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Ver detalhes</a>
-                  <a href="#" class="ml-2 text-red-600 hover:text-red-900"></a>
-              </td>
-          </tr>
-  
-  
-  
-          <tr>
-              <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex items-center">
-                      <div class="flex-shrink-0 h-10 w-10">
-                          <img class="h-10 w-10 rounded-full" src="https://i.pravatar.cc/150?img=1" alt="">
-                      </div>
-                      <div class="ml-4">
-                          <div class="text-sm font-medium text-gray-900">
-                              Isabel Gonçalves
-                          </div>
-                          <div class="text-sm text-gray-500">
-                              isabel@santacasabh.org.br
-                          </div>
-                      </div>
-                  </div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900">Diben 1.5 1000ML</div>
-                  <div class="text-sm text-gray-500">Fresenius</div>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap">
-                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                      Saída
-                  </span>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    SEPUAB009A
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  5 UN
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap  text-sm font-medium">
-                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Ver detalhes</a>
-                  <a 
-                    href="#" 
-                    class="ml-2 text-red-600 hover:text-red-900"
-                    @click.native="TambahPelanggan();"
-                  ></a>
-              </td>
-          </tr>
-  
-  
-  
-  
-          <!-- More rows... -->
+        <tr>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 h-10 w-10">
+                        <img 
+                          class="h-10 w-10 rounded-full" 
+                          src="../../../../../assets/img/icon-pelanggan.png" 
+                          alt=""
+                        >
+                    </div>
+                    <div class="ml-4">
+                        <div class="text-sm font-medium text-gray-900">
+                            1672026473647 | Rika Sari
+                        </div>
+                        <div class="text-sm text-gray-500">
+                            rikas21@gmail.com | 0821362736273
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">Prihal : acara dinas</div>
+                <div class="text-sm text-gray-500">Pengdam | BP (PUSAT)</div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                    ACC
+                </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              B/12/III/2026
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                16/11/2025
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap  text-sm font-medium">
+                <a 
+                  href="#" 
+                  class="
+                    text-indigo-600 
+                    hover:text-indigo-900
+                  "
+                  @click.native="TambahPelanggan();"
+                >View</a>
+            </td>
+      </tr>
+
+      <tr>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 h-10 w-10">
+                        <img 
+                        class="h-10 w-10 rounded-full" 
+                        src="../../../../../assets/img/icon-pelanggan.png" 
+                        alt=""
+                        >
+                    </div>
+                    <div class="ml-4">
+                        <div class="text-sm font-medium text-gray-900">
+                            1672026473647 | Rika Sari
+                        </div>
+                        <div class="text-sm text-gray-500">
+                            rikas21@gmail.com | 0821362736273
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">Prihal : acara dinas</div>
+                <div class="text-sm text-gray-500">Pengdam | BP (PUSAT)</div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                    ACC
+                </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            B/12/III/2026
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                16/11/2025
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap  text-sm font-medium">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">View</a>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 h-10 w-10">
+                        <img 
+                          class="h-10 w-10 rounded-full" 
+                          src="../../../../../assets/img/icon-pelanggan.png" 
+                          alt=""
+                        >
+                    </div>
+                    <div class="ml-4">
+                        <div class="text-sm font-medium text-gray-900">
+                            1672026473647 | Rika Sari
+                        </div>
+                        <div class="text-sm text-gray-500">
+                            rikas21@gmail.com | 0821362736273
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">Prihal : acara dinas</div>
+                <div class="text-sm text-gray-500">Pengdam | BP (PUSAT)</div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-500">
+                    Proses
+                </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              B/12/III/2026
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                16/11/2025
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap  text-sm font-medium">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">View</a>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 h-10 w-10">
+                        <img 
+                          class="h-10 w-10 rounded-full" 
+                          src="../../../../../assets/img/icon-pelanggan.png" 
+                          alt=""
+                        >
+                    </div>
+                    <div class="ml-4">
+                        <div class="text-sm font-medium text-gray-900">
+                            1672026473647 | Rika Sari
+                        </div>
+                        <div class="text-sm text-gray-500">
+                            rikas21@gmail.com | 0821362736273
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">Prihal : acara dinas</div>
+                <div class="text-sm text-gray-500">Pengdam | BP (PUSAT)</div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                    Ditolak
+                </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              B/12/III/2026
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                16/11/2025
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap  text-sm font-medium">
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">View</a>
+            </td>
+        </tr>
   
       </tbody>
   </table>

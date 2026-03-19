@@ -3,6 +3,7 @@
   import SuratBar from '../grafik/suratBar.vue';
   import SuratButtem from '../dashboard/suratButtem.vue';
   import addSurat from '../crud/addSurat.vue';
+  import Approved from '../crud/approved.vue';
 </script>
 
 <template>
@@ -26,6 +27,8 @@
               <SuratPie/>
             </div>
         </div>
+
+        <Approved/>
 
     </div>
 </template>

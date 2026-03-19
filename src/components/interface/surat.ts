@@ -1,5 +1,5 @@
 interface bukuAgenda{
-    noSurat?: number;
+    noSurat?: string;
     nik: string;
     tglAgenda: string;
     jenisSurat: string;
