@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { markRaw, ref } from 'vue';
 import { useModalPopUp } from '../../../../store/ModalPopUp';
-import FormSurat from './formSurat.vue';
+import FormSurat from './SuratMasuk/formSurat.vue';
 import Approved from './approved.vue';
-import Akun from './akun.vue';
+import Akun from './Akun/formAkun.vue';
 
 const Modal = useModalPopUp();
 
@@ -33,7 +33,7 @@ const showTab = (index: number) => {
 <template>
 
     <div 
-    id="modalPelanggan" 
+    id="modalSurat" 
     class="
         fixed 
         right-0 
@@ -51,7 +51,7 @@ const showTab = (index: number) => {
   <div class="relative top-5 bottom-5">
     <div class="flex justify-end p-2">
         <button 
-            @click="Modal.closeModal('modalPelanggan')"
+            @click="Modal.closeModal('modalSurat')"
             type="button" 
             class="
                 text-gray-400 

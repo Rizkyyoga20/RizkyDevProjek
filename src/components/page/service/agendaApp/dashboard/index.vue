@@ -2,7 +2,6 @@
   import SuratPie from '../grafik/suratPie.vue';
   import SuratBar from '../grafik/suratBar.vue';
   import SuratButtem from '../dashboard/suratButtem.vue';
-  import addSurat from '../crud/addSurat.vue';
   import Approved from '../crud/approved.vue';
 </script>
 
@@ -11,7 +10,6 @@
 
         <div class="grid lg:grid-cols-1 p-2">
           <div class="mt-20">
-            <addSurat/>    
             <SuratButtem/>
           </div>
         </div>

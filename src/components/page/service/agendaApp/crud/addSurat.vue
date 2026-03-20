@@ -5,14 +5,14 @@ import TabSurat from "./tabSurat.vue";
 
 const Modal = useModalPopUp();
 
-const showTambahPelanggan = ref(false);
+const showAgenda = ref(false);
 
 watch( () => Modal.ModalId, (newValue) => {
-    if (String(newValue) === 'modalPelanggan') {
-      showTambahPelanggan.value = true;
-      showTambahPelanggan.value = false;
+    if (String(newValue) === 'modalSurat') {
+      showAgenda.value = true;
+      showAgenda.value = false;
     } else {
-      showTambahPelanggan.value = false;
+      showAgenda.value = false;
     }
   }
 );
@@ -21,7 +21,7 @@ watch( () => Modal.ModalId, (newValue) => {
 
 <template>
     <TabSurat
-      v-show="showTambahPelanggan" 
+      v-show="showAgenda" 
       :ModalID="Modal.ModalId ?? 0" 
     />
   <div>
@@ -29,7 +29,7 @@ watch( () => Modal.ModalId, (newValue) => {
     <button 
       class="bg-blue-500 rounded-md p-2 ml-1 text-yellow-100"
       style="font-weight:500; font-size:15px;"
-      @click="Modal.openModal('modalPelanggan')"
+      @click="Modal.openModal('modalSurat')"
     >
       Daftar Agenda
     </button>

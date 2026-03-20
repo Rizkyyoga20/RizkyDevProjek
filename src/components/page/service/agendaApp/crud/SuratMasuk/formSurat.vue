@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
-import FromBottem from '../../../../ui desain/FromBottem.vue';
-import InputText from '../../../../ui desain/InputText.vue';
-import InputNumber from '../../../../ui desain/InputNumber.vue';
-import TextArea from '../../../../ui desain/TextArea.vue';
-import { bukuAgenda } from '../../../../interface/surat';
-import SelectOption from '../../../../ui desain/selectOption.vue';
+import FromBottem from '../../../../../ui desain/FromBottem.vue';
+import InputText from '../../../../../ui desain/InputText.vue';
+import TextArea from '../../../../../ui desain/TextArea.vue';
+import { bukuAgenda } from '../../../../../interface/surat';
+import SelectOption from '../../../../../ui desain/selectOption.vue';
 
 const tujuanSurat = ref('');
 const jenisSurat = ref('');
@@ -38,8 +37,6 @@ const payload = reactive<bukuAgenda>({
   perihal:'',
   tujuan:'',
   statusKirimrn:'',
-  nomorTelepon:'',
-  email:'',
 });
 
 
@@ -54,10 +51,6 @@ async function TambahPelanggan() {
       perihal: String(payload.perihal),
       tujuan: String(payload.tujuan),
       statusKirimrn: String(payload.statusKirimrn),
-      nomorTelepon: String(payload.nomorTelepon),
-      email: String(payload.email),
-
-
     };
    await agenda;
   } catch (error) {
@@ -69,6 +62,7 @@ async function TambahPelanggan() {
 
 <template>
 
+<div class="w-[100%] p-2">
   <InputText
     id="noSurat" 
     label="noSurat" 
@@ -109,20 +103,6 @@ async function TambahPelanggan() {
       :options="jenisOption" 
     />
 
-    <InputText
-      id="email" 
-      label="email" 
-      v-model="payload.email" 
-      placeholder="Email" 
-    />
-
-    <InputNumber 
-      id="nomorTelepon" 
-      label="nomorTelepon" 
-      v-model="payload.nomorTelepon" 
-      placeholder="Nomor Telepon" 
-    />
-
     <div class="w-[100%]">
       <FromBottem 
         class="float-end" 
@@ -132,4 +112,7 @@ async function TambahPelanggan() {
       />
     </div>
   </div>
+</div>
+
+
 </template>

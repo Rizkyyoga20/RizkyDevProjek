@@ -9,16 +9,16 @@
     },
     tooltip: {},
     legend: {
-      data: ['Sudah Selesai', 'Masih Proses', 'Disposisi']
+      data: ['Approved', 'Masih proses', 'Ditolak']
     },
     series: [
       {
         name: 'Grafik Pie',
         type: 'pie',
         data: [
-          { value: 5, name: 'Sudah Selesai' },
-          { value: 6, name: 'Masih Proses' },
-          { value: 15, name: 'Disposisi' },
+          { value: 5, name: 'Approved' },
+          { value: 5, name: 'Masih proses' },
+          { value: 2, name: 'Ditolak' },
         ]
       }
     ]
