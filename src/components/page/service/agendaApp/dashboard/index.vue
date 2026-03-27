@@ -6,7 +6,7 @@
 </script>
 
 <template>
-    <div class="relative pb-10">
+    <div class="relative pb-1 bg-green-300">
 
         <div class="grid lg:grid-cols-1 p-2">
           <div class="mt-20">
@@ -25,7 +25,7 @@
               <SuratPie/>
             </div>
         </div>
-
+        
         <Approved/>
 
     </div>
