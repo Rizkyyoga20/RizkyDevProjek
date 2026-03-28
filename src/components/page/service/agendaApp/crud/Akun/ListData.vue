@@ -39,7 +39,7 @@ async function TambahPelanggan() {
 </script>
 
 <template>
-  <div class="pb-10 overflow-x-auto">
+  <div class="pb-10 overflow-x-auto bg-gray-50 w-full">
 
   <table class="min-w-full divide-y divide-gray-200 overflow-x-auto">
       <thead class="bg-gray-50">

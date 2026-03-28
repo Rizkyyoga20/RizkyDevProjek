@@ -25,11 +25,10 @@ const openSuratMasuk = () => {
         transform -translate-y-1/2 z-50 
         lg:w-1/2
         w-full 
-        bg-white 
+        bg-green-300
         bg-opacity-200 
         overflow-y-auto 
         h-screen 
-        px-4
     "
 >
 
@@ -68,23 +67,22 @@ const openSuratMasuk = () => {
 
 
 
-        <h4 class="p-1">
+        <h4 
+          class="p-1"
+          style="font-weight:500; font-size:20px; text-align:left;"
+        >
             <button 
                 @click="openSuratMasuk"  
                 class="
                     bg-blue-400 
                     text-amber-100 
                     pl-2 
-                    pt-0.5 
                     pr-2 
                     pb-0.5
                     relative
                 "
-                style="
-                  border-radius:5px;
-                  font-weight: bold;
-                "
-            >+</button> Daftar Agenda
+                style="border-radius:5px;"
+            >+</button> Daftar Surat Masuk
         </h4>
 
 
@@ -133,7 +131,7 @@ const openSuratMasuk = () => {
           <FormSurat class="pt-7"/>
         </div>
       </div>
-      <Approved/>
+      <Approved class="mt-3"/>
     </div>
 </div>
 

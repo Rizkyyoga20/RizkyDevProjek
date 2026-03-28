@@ -25,11 +25,10 @@ const openAkun = () => {
         transform -translate-y-1/2 z-50 
         lg:w-1/2
         w-full 
-        bg-white 
+      bg-green-300
         bg-opacity-200 
         overflow-y-auto 
         h-screen 
-        px-4
     "
 >
 
@@ -66,27 +65,23 @@ const openAkun = () => {
 <div>
     <div style="padding-top:15px;">
 
-
-
-        <h4 class="p-1">
+        <h4 
+          class="p-1"
+          style="font-weight:500; font-size:20px; text-align:left;"
+        >
             <button 
                 @click="openAkun"  
                 class="
                     bg-blue-400 
                     text-amber-100 
                     pl-2 
-                    pt-0.5 
                     pr-2 
                     pb-0.5
                     relative
                 "
-                style="
-                  border-radius:5px;
-                  font-weight: bold;
-                "
+                style="border-radius:5px;"
             >+</button> Daftar Akun
         </h4>
-
 
     <div 
         v-show="showAkun"
@@ -133,7 +128,7 @@ const openAkun = () => {
           <FormAkun class="pt-7"/>
         </div>
       </div>
-      <ListData />
+      <ListData class="mt-3" />
     </div>
 </div>
 

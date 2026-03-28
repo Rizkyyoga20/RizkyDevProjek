@@ -5,6 +5,7 @@ import InputText from '../../../../../ui desain/InputText.vue';
 import TextArea from '../../../../../ui desain/TextArea.vue';
 import { bukuAgenda } from '../../../../../interface/surat';
 import SelectOption from '../../../../../ui desain/selectOption.vue';
+import InputDate from '../../../../../ui desain/InputDate.vue';
 
 const tujuanSurat = ref('');
 const jenisSurat = ref('');
@@ -29,6 +30,7 @@ const jenisOption = ref([
 
 
 const payload = reactive<bukuAgenda>({
+  idAgenda:'',
   noSurat:'',
   nik:'',
   tglAgenda:'',
@@ -37,12 +39,14 @@ const payload = reactive<bukuAgenda>({
   perihal:'',
   tujuan:'',
   statusKirimrn:'',
+  tglSurat:'',
 });
 
 
 async function TambahPelanggan() {
   try {
     const agenda: bukuAgenda = {
+      idAgenda: String(payload.idAgenda),
       noSurat: String(payload.noSurat),
       nik: String(payload.nik),
       tglAgenda: String(payload.tglAgenda),
@@ -51,6 +55,7 @@ async function TambahPelanggan() {
       perihal: String(payload.perihal),
       tujuan: String(payload.tujuan),
       statusKirimrn: String(payload.statusKirimrn),
+      tglSurat: String(payload.tglSurat),
     };
    await agenda;
   } catch (error) {
@@ -102,7 +107,16 @@ async function TambahPelanggan() {
       @update:modelValue="jenisSurat = $event" 
       :options="jenisOption" 
     />
-
+    <p
+      class="ml-3" 
+      style="font-weight:500; font-size:15px; text-align:left;"
+    >* Tanggal surat</p>
+    <InputDate 
+      id="tglSurat" 
+      label="Tanggal Surat" 
+      v-model="payload.tglSurat" 
+    />
+    
     <div class="w-[100%]">
       <FromBottem 
         class="float-end" 

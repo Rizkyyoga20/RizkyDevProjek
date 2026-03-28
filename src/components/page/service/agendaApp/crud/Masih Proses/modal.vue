@@ -17,11 +17,10 @@ const Modal = useModalPopUp();
         transform -translate-y-1/2 z-50 
         lg:w-1/2
         w-full 
-        bg-white 
+        bg-green-300
         bg-opacity-200 
         overflow-y-auto 
         h-screen 
-        px-4
     "
 >
 
@@ -57,6 +56,7 @@ const Modal = useModalPopUp();
 
 <div>
     <div style="padding-top:15px;">
+        <p class="p-3" style="font-weight:500; font-size:20px; text-align:left;">Daftar Agenda Masih Diproses</p>
         <ListData />
     </div>
 </div>

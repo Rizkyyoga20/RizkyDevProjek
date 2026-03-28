@@ -57,6 +57,7 @@ const Modal = useModalPopUp();
 
 <div>
     <div style="padding-top:15px;">
+        <p class="p-3" style="font-weight:500; font-size:20px; text-align:left;">Daftar Agenda Approved</p>
         <Approved/>
     </div>
 </div>
