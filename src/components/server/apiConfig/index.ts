@@ -1,6 +1,7 @@
 import { DataMenu, UnsplasPhotos } from "../../interface/data";
-import { menuApi, unsplashApi } from "../api/menu";
-import { ResponseMenusApi, ResponseUnsplasApi } from "../res";
+import { bukuAgenda } from "../../interface/surat";
+import { agendaAppApi, menuApi, unsplashApi } from "../api/menu";
+import { ResponseBukuAgenda, ResponseMenusApi, ResponseUnsplasApi } from "../res";
 
   class DataStore {
 
@@ -12,6 +13,26 @@ import { ResponseMenusApi, ResponseUnsplasApi } from "../res";
         throw error;
       }
     }
+
+    async getDaftarAgenda(): Promise<ResponseBukuAgenda<bukuAgenda[]>> {
+      try {
+        const response = await agendaAppApi.get(import.meta.env.VITE_AGENDA_APP);
+        return response.data;
+      } catch (error) {
+        throw error;
+      }
+    }
+
+    /*
+    async getDaftarAgenda(): Promise<ResponseBukuAgenda<bukuAgenda[]>> {
+      try {
+        const response = await agendaAppApi.get(`${import.meta.env.VITE_ID_AGENDA_APP}/values/${import.meta.env.VITE_NAME_AGENDA_APP}?key=${import.meta.env.VITE_KEYS_AGENDA_APP}`);
+        return response.data;
+      } catch (error) {
+        throw error;
+      }
+    }
+    */
 
     async PhotoUnsplas(): Promise<ResponseUnsplasApi<[UnsplasPhotos]>> {
       try {

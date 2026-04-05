@@ -1,6 +1,6 @@
 interface bukuAgenda{
     idAgenda: string;
-    noSurat?: string;
+    noSurat: string;
     nik: string;
     tglAgenda: string;
     tglSurat: string;
@@ -8,7 +8,7 @@ interface bukuAgenda{
     pengirim: string;
     perihal: string;
     tujuan: string;
-    statusKirimrn: string;
+    statusKirim: string;
 }
 
 interface storeStatus{
