@@ -11,8 +11,8 @@ const unsplashApi = axios.create({
 const agendaAppApi = axios.create({
   baseURL: import.meta.env.VITE_VUE_APP_AGENDA,
   headers: {
-    'X-Requested-With': 'XMLHttpRequest'
-  }
+    'Content-Type': 'application/json',
+  },
 });
 
 export { menuApi, unsplashApi, agendaAppApi };

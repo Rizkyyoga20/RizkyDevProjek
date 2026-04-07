@@ -148,7 +148,8 @@ export const useSuratStore = defineStore('Agenda', () => {
 
   async function ListBukuAgenda(): Promise<ResponseBukuAgenda<bukuAgenda[]>> {
     try {
-      const response = await agendaAppApi.get(import.meta.env.VITE_AGENDA_APP);
+      const API_URL = import.meta.env.VITE_AGENDA_APP;
+      const response = await agendaAppApi.get(API_URL);
       return response.data;
     } catch (error) {
       throw error;

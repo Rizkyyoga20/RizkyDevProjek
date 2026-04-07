@@ -7,7 +7,13 @@
 
 <template>
     <div class="relative pb-1 bg-green-300">
-
+        <img class="w-20 m-3 float-start" src="../../../../../assets/img/logo-bukit-barisan.jpeg">
+        <div 
+          class="text-center bg-white w-[100%] text-red-700" 
+          style="font-weight:500; font-size:30px; padding:35px;"
+        >
+          PENGAGENDAAN SURAT MASUK SETUMDAM I/BB
+        </div>
         <div class="grid lg:grid-cols-1 p-2">
           <div class="mt-20">
             <SuratButtem/>
