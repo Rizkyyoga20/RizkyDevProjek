@@ -4,12 +4,11 @@ import { useSuratStore } from '../../../../store/surat';
 import Search from '../../../../ui desain/search.vue';
 import Pagidation from '../../../../ui desain/pagidation.vue';
 
-
-
 const list = useSuratStore();
 
 onMounted(() => {
-    list.getListAgenda();
+  list.getListAgenda();
+  list.ListBukuAgenda();
 });
 
 </script>
@@ -17,7 +16,7 @@ onMounted(() => {
 <template>
 
 
-  <div class="w-full" style="margin-top:270px;">
+  <div class="w-full" style="margin-top:10px;">
     <div class="ml-1 mr-1 lg:ml-20 lg:mr-20">
 
       <Search 
@@ -41,16 +40,13 @@ onMounted(() => {
         :TotalData="list.TotalPage"                           
       />
 
-      <div v-for="List in list.Pagidation">
-        {{ List.tujuan }} |  {{ List.jenisSurat }}
-      </div>
-
     </div>              
 
   </div>
 
 
   <div class="pb-10 overflow-x-auto bg-gray-50 w-full">
+
 
   <table class="min-w-full divide-y divide-gray-200 overflow-x-auto">
       <thead class="bg-gray-50">
@@ -150,7 +146,7 @@ onMounted(() => {
       </thead>
       <tbody 
         class="bg-white divide-y divide-gray-200"
-        v-for="List in list.Pagidation"
+        v-for="List in list.Pagination"
       >
 
         <tr>

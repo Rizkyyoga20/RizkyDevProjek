@@ -16,7 +16,7 @@ import { ResponseBukuAgenda, ResponseMenusApi, ResponseUnsplasApi } from "../res
 
     async getDaftarAgenda(): Promise<ResponseBukuAgenda<bukuAgenda[]>> {
       try {
-        const response = await agendaAppApi.get(import.meta.env.VITE_AGENDA_APP);
+        const response = await agendaAppApi.get('');
         return response.data;
       } catch (error) {
         throw error;

@@ -1,17 +1,16 @@
+import fetchJsonp from 'fetch-jsonp';
 import { acceptHMRUpdate, defineStore } from "pinia";
 import { computed, ref} from 'vue';
 import { useLocalStorage } from "@vueuse/core";
 import { bukuAgenda, storeStatus, Akun } from "../interface/surat";
 import { ResponseAkun, ResponseBukuAgenda, ResponseStatusSurat, } from "../server/res";
-import { agendaAppApi } from "../server/api/menu";
+
 
 export const useSuratStore = defineStore('Agenda', () => {
 
   //state
 
-  const ListAgenda = useLocalStorage<ResponseBukuAgenda<bukuAgenda[]>>('Agenda', {
-    agenda:[],
-  });
+  const ListAgenda = ref<bukuAgenda[]>([])
   const statusSurat = useLocalStorage<ResponseStatusSurat<storeStatus[]>>('status', {
     statusSurat:[],
   });
@@ -24,7 +23,7 @@ export const useSuratStore = defineStore('Agenda', () => {
   //const idAgenda = ref();
   const MinPage = ref(1);
   const MaxPage = ref(10);
-  const TotalPage = ListAgenda.value.agenda.length;
+  const TotalPage = ListAgenda.value.length;
   const TotalPageStatusAgenda = statusSurat.value.statusSurat;
   const TotalPageDataAkun = akun.value.akun;
 
@@ -46,38 +45,6 @@ export const useSuratStore = defineStore('Agenda', () => {
     }, 2000);
   }
   //akhir notif
-
-  async function filteredAgenda(): Promise<ResponseBukuAgenda<bukuAgenda[]>> {
-    try {
-      const response = await agendaAppApi.get(`https://sheets.googleapis.com/v4/spreadsheets/${import.meta.env.VITE_ID_AGENDA_APP}/values/${import.meta.env.VITE_NAME_AGENDA_APP}?key=${import.meta.env.VITE_KEYS_AGENDA_APP}`);
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
-  }
-/*
-  async function getAgendaApp() {
-    try {
-      const response = await DataStore.getDaftarAgenda();
-      BukuAgenda.value = response;
-    } catch (error) {
-      const err = error as Error;
-      console.error('Error:', err.message);
-    }
-  }
-
-  async function getAgendaApp() {
-    try {
-      const response = await DataStore.getDaftarAgenda();
-      console.log(response);
-      BukuAgenda.value = response.agenda;
-    } catch (error) {
-      const err = error as Error;
-      console.error('Error:', err.message);
-      console.error('Error detail:', error);
-    }
-  }
-  */
 
   function handleCreateDataAgenda(data: bukuAgenda) {
     if (!data.noSurat || typeof data.nik !== 'number') {
@@ -145,35 +112,67 @@ export const useSuratStore = defineStore('Agenda', () => {
 
   }
 
-
-  async function ListBukuAgenda(): Promise<ResponseBukuAgenda<bukuAgenda[]>> {
-    try {
-      const API_URL = import.meta.env.VITE_AGENDA_APP;
-      const response = await agendaAppApi.get(API_URL);
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
+  async function gasRequest(action: string, params: Record<string, any> = {}) {
+    const urlParams = new URLSearchParams({ action, ...params })
+    // JANGAN tambah &callback=? disini
+    const url = `${import.meta.env.VITE_VUE_APP_AGENDA}?${urlParams}`
+    
+    const response = await fetchJsonp(url, { timeout: 25000 }) // fetchJsonp otomatis tambah callback=
+    const res = await response.json()
+    if (res.status === 'error') throw new Error(res.message)
+    return res.data
   }
 
+  // READ - panggil gini, jangan kasih params
+  async function ListBukuAgenda(): Promise<bukuAgenda[]> {
+  const data = await gasRequest('read')
+  console.log('Data dari GAS:', data)
+  return data;
+  }
+  
+  // CREATE - contoh kalau ada params
+  async function CreateBukuAgenda(data: bukuAgenda) {
+    return await gasRequest('create', data)
+  }
+  
+  // UPDATE
+  async function UpdateBukuAgenda(data: bukuAgenda) {
+    return await gasRequest('update', data)
+  }
+  
+  // DELETE
+  async function DeleteBukuAgenda(idAgenda: number) {
+    return await gasRequest('delete', { idAgenda })
+  }
+  
   async function getListAgenda() {
-    try {
-      const response = await ListBukuAgenda();
-      ListAgenda.value = response;
-    } catch (error) {
-      const err = error as Error;
-      console.error('Error:', err.message);
-    }
+    const data = await gasRequest('read')
+    console.log('Data dari GAS:', data)
+    ListAgenda.value = data // langsung array, jangan {agenda: data}
   }
-
+  
+  async function tambahAgenda(data: bukuAgenda) {
+    await CreateBukuAgenda(data)
+    await getListAgenda()
+  }
+  
+  async function editAgenda(data: bukuAgenda) {
+    await UpdateBukuAgenda(data)
+    await getListAgenda()
+  }
+  
+  async function hapusAgenda(id: number) {
+    await DeleteBukuAgenda(id)
+    await getListAgenda()
+  }
 
 
   const GetTotalPage = computed(() => {
-    return Math.ceil(ListAgenda.value.agenda.length / MaxPage.value);
+    return Math.ceil(ListAgenda.value.length / MaxPage.value);
   });
 
   const totalMenus = computed(() => {
-    return Math.ceil(ListAgenda.value.agenda.length) ;
+    return Math.ceil(ListAgenda.value.length) ;
   });
 
   function handleBack() {
@@ -202,26 +201,29 @@ export const useSuratStore = defineStore('Agenda', () => {
     MinPage.value = 1;
   };
 
+
   const filteredMenus = computed(() => {
-    if (!ListAgenda.value || !Search.value) return ListAgenda.value;
-    return ListAgenda.value.agenda.filter((listData: bukuAgenda) => {
+    if (!Search.value) return ListAgenda.value // langsung, jangan data.agenda
+    
+    const keyword = Search.value.toLowerCase()
+    return ListAgenda.value.filter(item => { // langsung .filter
       return (
-        listData.perihal.toLowerCase().includes(Search.value.toLowerCase()) ||
-        listData.nik.toString().includes(Search.value.toLowerCase()) ||
-        listData.noSurat.toLowerCase().includes(Search.value.toLowerCase()) ||
-        listData.jenisSurat.toString().includes(Search.value.toLowerCase())
-      );
-    });
-  });
+        item.perihal?.toLowerCase().includes(keyword) ||
+        item.nik?.toString().includes(Search.value) ||
+        item.noSurat?.toString().toLowerCase().includes(keyword) ||
+        item.jenisSurat?.toString().toLowerCase().includes(keyword)
+      )
+    })
+  })
+
   
-  const Pagidation = computed(() => {
-    if (!filteredMenus.value || !Array.isArray(filteredMenus.value)) return [];
+  const Pagination = computed(() => {
+    if (!filteredMenus.value || !Array.isArray(filteredMenus.value)) return []
     return filteredMenus.value.slice(
       (MinPage.value - 1) * MaxPage.value,
       MinPage.value * MaxPage.value
-    );
-  });
-  
+    )
+  })  
   
 
       
@@ -238,8 +240,6 @@ export const useSuratStore = defineStore('Agenda', () => {
     ListAgenda,
     ListBukuAgenda,
     getListAgenda,
-    
-    filteredAgenda,
     handleError,
 
     handleCreateDataAgenda,
@@ -254,7 +254,20 @@ export const useSuratStore = defineStore('Agenda', () => {
     handleSearch,
     handleMaxPageChange,
     filteredMenus,
-    Pagidation,
+    Pagination,
+
+    gasRequest,
+    //ListBukuAgenda,
+    CreateBukuAgenda,
+    UpdateBukuAgenda,
+    DeleteBukuAgenda,
+    //getListAgenda,
+    tambahAgenda,
+    editAgenda,
+    hapusAgenda,
+
+
+
 
   }
 
