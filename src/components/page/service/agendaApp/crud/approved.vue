@@ -11,6 +11,9 @@ onMounted(() => {
   list.ListBukuAgenda();
 });
 
+
+
+
 </script>
 
 <template>
@@ -161,7 +164,7 @@ onMounted(() => {
                       </div>
                       <div class="ml-4">
                           <div class="text-sm font-medium text-gray-900">
-                            {{ List.noSurat }} | {{ List.noSurat }}
+                            {{ List.idAgenda }} /{{ List.noSurat }} 
                           </div>
                           <div class="text-sm text-gray-500">
                               rikas21@gmail.com | 0821362736273

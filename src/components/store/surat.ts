@@ -3,7 +3,7 @@ import { acceptHMRUpdate, defineStore } from "pinia";
 import { computed, ref} from 'vue';
 import { useLocalStorage } from "@vueuse/core";
 import { bukuAgenda, storeStatus, Akun } from "../interface/surat";
-import { ResponseAkun, ResponseBukuAgenda, ResponseStatusSurat, } from "../server/res";
+import { ResponseAkun, ResponseStatusSurat, } from "../server/res";
 
 
 export const useSuratStore = defineStore('Agenda', () => {
@@ -148,12 +148,46 @@ export const useSuratStore = defineStore('Agenda', () => {
   async function getListAgenda() {
     const data = await gasRequest('read')
     console.log('Data dari GAS:', data)
-    ListAgenda.value = data // langsung array, jangan {agenda: data}
+    ListAgenda.value = data
   }
   
-  async function tambahAgenda(data: bukuAgenda) {
-    await CreateBukuAgenda(data)
-    await getListAgenda()
+  /*
+    async function tambahAgenda(data: bukuAgenda) {
+      await CreateBukuAgenda(data)
+      await getListAgenda()
+    }
+  */
+
+    async function tambahAgenda(payload: Omit<bukuAgenda, 'idAgenda' | 'tglAgenda'>) {
+      // 1. Validasi yang bener: cek kosong + trim spasi
+      const isEmpty = (val: any) => !val || String(val).trim() === ''
+      
+      if (
+        isEmpty(payload.nik) ||
+        isEmpty(payload.noSurat) ||
+        isEmpty(payload.perihal) ||
+        isEmpty(payload.tujuan) ||
+        isEmpty(payload.jenisSurat) ||
+        isEmpty(payload.statusKirim) ||
+        isEmpty(payload.pengirim) ||
+        isEmpty(payload.tglSurat)
+      ) {
+        console.log('Error input')
+        handleError('Data tidak lengkap!', { success: false })
+        return // stop, jangan lanjut
+      }
+    
+      try {
+        const data = await gasRequest('create', { data: JSON.stringify(payload) })
+        ListAgenda.value.unshift(data) // langsung muncul di tabel
+        handleError('Data berhasil disimpan', { success: true })
+        console.log('berhasil tersimpan')
+        // 2. Hapus ini: window.history.go(0)
+      } catch (err: any) {
+        handleError(err.message || 'Gagal simpan ke server', { success: false })
+        //throw err
+        console.log('gagal simpan data')
+      }
   }
   
   async function editAgenda(data: bukuAgenda) {

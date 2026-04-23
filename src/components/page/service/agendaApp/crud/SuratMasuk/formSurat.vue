@@ -6,6 +6,10 @@ import TextArea from '../../../../../ui desain/TextArea.vue';
 import { bukuAgenda } from '../../../../../interface/surat';
 import SelectOption from '../../../../../ui desain/selectOption.vue';
 import InputDate from '../../../../../ui desain/InputDate.vue';
+import { useSuratStore } from '../../../../../store/surat';
+
+const SuratAgendaStore = useSuratStore();
+
 
 const tujuanSurat = ref('');
 const jenisSurat = ref('');
@@ -28,38 +32,35 @@ const jenisOption = ref([
 ]);
 
 
+const payloadAddSurat = reactive<Omit<bukuAgenda, 'idAgenda' | 'tglAgenda'>>({
+  noSurat: '',
+  nik: '',
+  tglSurat: '',
+  jenisSurat: '',
+  pengirim: '',
+  perihal: '',
+  tujuan: '',
+  statusKirim: 'Belum'
+})
 
-const payload = reactive<bukuAgenda>({
-  idAgenda:'',
-  noSurat:'',
-  nik:'',
-  tglAgenda:'',
-  jenisSurat:'',
-  pengirim:'',
-  perihal:'',
-  tujuan:'',
-  statusKirimrn:'',
-  tglSurat:'',
-});
-
-
-async function TambahPelanggan() {
+async function TambahSurat() {
   try {
-    const agenda: bukuAgenda = {
-      idAgenda: String(payload.idAgenda),
-      noSurat: String(payload.noSurat),
-      nik: String(payload.nik),
-      tglAgenda: String(payload.tglAgenda),
-      jenisSurat: String(payload.jenisSurat),
-      pengirim: String(payload.pengirim),
-      perihal: String(payload.perihal),
-      tujuan: String(payload.tujuan),
-      statusKirimrn: String(payload.statusKirimrn),
-      tglSurat: String(payload.tglSurat),
-    };
-   await agenda;
+    // 2. Kirim langsung, tanpa .value
+    await SuratAgendaStore.tambahAgenda(payloadAddSurat)
+    
+    // Reset form pake Object.assign
+    Object.assign(payloadAddSurat, {
+      noSurat: '',
+      nik: '',
+      tglSurat: '',
+      jenisSurat: '',
+      pengirim: '',
+      perihal: '',
+      tujuan: '',
+      statusKirim: 'Belum'
+    })
   } catch (error) {
-    console.error(error);
+    console.error(error)
   }
 }
 
@@ -71,7 +72,7 @@ async function TambahPelanggan() {
   <InputText
     id="noSurat" 
     label="noSurat" 
-    v-model="payload.noSurat" 
+    v-model="payloadAddSurat.noSurat" 
     placeholder="Nomor Surat" 
   />
 
@@ -80,13 +81,13 @@ async function TambahPelanggan() {
       id="perihal" 
       label="perihal" 
       placeholder="Perihal Surat" 
-      v-model="payload.perihal" 
+      v-model="payloadAddSurat.perihal" 
     />
 
     <InputText
       id="pengirim" 
       label="pengirim" 
-      v-model="payload.pengirim" 
+      v-model="payloadAddSurat.pengirim" 
       placeholder="Pengirim" 
     />
 
@@ -114,15 +115,15 @@ async function TambahPelanggan() {
     <InputDate 
       id="tglSurat" 
       label="Tanggal Surat" 
-      v-model="payload.tglSurat" 
+      v-model="payloadAddSurat.tglSurat" 
     />
     
     <div class="w-[100%]">
       <FromBottem 
         class="float-end" 
         id="agenda" 
-        label="Save" 
-        @click.native="TambahPelanggan();"
+        label="Save"
+        @click="TambahSurat"
       />
     </div>
   </div>

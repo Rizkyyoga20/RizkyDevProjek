@@ -3,6 +3,11 @@
   import SuratBar from '../grafik/suratBar.vue';
   import SuratButtem from '../dashboard/suratButtem.vue';
   import Approved from '../crud/approved.vue';
+  import Notif from '../../../../ui desain/Notif.vue';
+
+  import { useSuratStore } from '../../../../store/surat';
+  const SuratAgendaStore = useSuratStore();
+
 </script>
 
 <template>
@@ -33,6 +38,12 @@
         </div>
         
         <Approved/>
+
+        <Notif
+          :alertType="SuratAgendaStore.alertType" 
+          :showAlert="SuratAgendaStore.showAlert" 
+          :alertMessage="SuratAgendaStore.alertMessage" 
+        />
 
     </div>
 </template>
