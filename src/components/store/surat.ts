@@ -158,35 +158,54 @@ export const useSuratStore = defineStore('Agenda', () => {
     }
   */
 
-    async function tambahAgenda(payload: Omit<bukuAgenda, 'idAgenda' | 'tglAgenda'>) {
-      // 1. Validasi yang bener: cek kosong + trim spasi
-      const isEmpty = (val: any) => !val || String(val).trim() === ''
+  async function tambahAgenda(payload: Omit<bukuAgenda, 'idAgenda' | 'tglAgenda'>) {
+      console.log('Payload sebelum validasi:', payload) // <- tambah ini buat debug
+    
+      if (!payload.noSurat || String(payload.noSurat).trim() === '') {
+        handleError('Error input: Nomor Surat kosong', { success: false })
+        throw new Error('noSurat')
+      }
       
-      if (
-        isEmpty(payload.nik) ||
-        isEmpty(payload.noSurat) ||
-        isEmpty(payload.perihal) ||
-        isEmpty(payload.tujuan) ||
-        isEmpty(payload.jenisSurat) ||
-        isEmpty(payload.statusKirim) ||
-        isEmpty(payload.pengirim) ||
-        isEmpty(payload.tglSurat)
-      ) {
-        console.log('Error input')
-        handleError('Data tidak lengkap!', { success: false })
-        return // stop, jangan lanjut
+      if (!payload.nik || String(payload.nik).trim() === '') {
+        handleError('Error input: NIK kosong', { success: false })
+        throw new Error('nik')
+      }
+      
+      if (!payload.jenisSurat || String(payload.jenisSurat).trim() === '') {
+        handleError('Error input: Jenis Surat belum dipilih', { success: false })
+        throw new Error('jenisSurat')
+      }
+      
+      if (!payload.pengirim || String(payload.pengirim).trim() === '') {
+        handleError('Error input: Pengirim kosong', { success: false })
+        throw new Error('pengirim')
+      }
+      
+      if (!payload.perihal || String(payload.perihal).trim() === '') {
+        handleError('Error input: Perihal kosong', { success: false })
+        throw new Error('perihal')
+      }
+      
+      if (!payload.tujuan || String(payload.tujuan).trim() === '') {
+        handleError('Error input: Tujuan Surat belum dipilih', { success: false })
+        throw new Error('tujuan')
+      }
+      
+      if (!payload.tglSurat || String(payload.tglSurat).trim() === '') {
+        handleError('Error input: Tanggal Surat kosong', { success: false })
+        throw new Error('tglSurat')
       }
     
       try {
+        console.log('Kirim ke GAS:', payload)
         const data = await gasRequest('create', { data: JSON.stringify(payload) })
-        ListAgenda.value.unshift(data) // langsung muncul di tabel
+        ListAgenda.value.unshift(data)
         handleError('Data berhasil disimpan', { success: true })
-        console.log('berhasil tersimpan')
-        // 2. Hapus ini: window.history.go(0)
+        return data
       } catch (err: any) {
-        handleError(err.message || 'Gagal simpan ke server', { success: false })
-        //throw err
-        console.log('gagal simpan data')
+        console.error('Error dari GAS:', err)
+        handleError('Error input: ' + (err.message || 'Gagal simpan ke Sheet'), { success: false })
+        throw err
       }
   }
   

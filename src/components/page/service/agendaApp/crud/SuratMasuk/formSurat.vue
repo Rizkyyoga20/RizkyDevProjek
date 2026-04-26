@@ -7,12 +7,20 @@ import { bukuAgenda } from '../../../../../interface/surat';
 import SelectOption from '../../../../../ui desain/selectOption.vue';
 import InputDate from '../../../../../ui desain/InputDate.vue';
 import { useSuratStore } from '../../../../../store/surat';
+import InputNumber from '../../../../../ui desain/InputNumber.vue';
 
 const SuratAgendaStore = useSuratStore();
-
+const maxId = SuratAgendaStore.ListAgenda.length === 0 ? 0 : 
+              Math.max(...SuratAgendaStore.ListAgenda.map(
+                (
+                  item: bukuAgenda
+                ) => item.id
+              ));
+const newId = maxId + 1;
 
 const tujuanSurat = ref('');
 const jenisSurat = ref('');
+
 const tujuanOption = ref([
   { value: 'Pangdam', text: 'Pangdam' },
   { value: 'Kesdam', text: 'Kesdam' },
@@ -33,34 +41,34 @@ const jenisOption = ref([
 
 
 const payloadAddSurat = reactive<Omit<bukuAgenda, 'idAgenda' | 'tglAgenda'>>({
-  noSurat: '',
-  nik: '',
-  tglSurat: '',
-  jenisSurat: '',
-  pengirim: '',
-  perihal: '',
-  tujuan: '',
-  statusKirim: 'Belum'
+  id: newId ,
+  noSurat: '1/DBM',
+  nik: '8378463463746',
+  tglSurat: '21/04/2026',
+  jenisSurat: 'ND/SE/SI',
+  pengirim: 'Andini',
+  perihal: 'jkjds djsdnskd',
+  tujuan: 'dsad skkdsa',
+  statusKirim: 'Baru Masuk'
 })
 
 async function TambahSurat() {
   try {
-    // 2. Kirim langsung, tanpa .value
     await SuratAgendaStore.tambahAgenda(payloadAddSurat)
-    
-    // Reset form pake Object.assign
     Object.assign(payloadAddSurat, {
-      noSurat: '',
-      nik: '',
-      tglSurat: '',
-      jenisSurat: '',
-      pengirim: '',
-      perihal: '',
-      tujuan: '',
-      statusKirim: 'Belum'
+        id: Number(payloadAddSurat.id),
+        noSurat: String(payloadAddSurat.noSurat),
+        nik: String(payloadAddSurat.nik),
+        tglSurat: String(payloadAddSurat.tglSurat),
+        jenisSurat: String(payloadAddSurat.jenisSurat),
+        pengirim: String(payloadAddSurat.pengirim),
+        perihal: String(payloadAddSurat.perihal),
+        tujuan: String(payloadAddSurat.tujuan),
+        statusKirim: String(payloadAddSurat.statusKirim),
     })
+
   } catch (error) {
-    console.error(error)
+
   }
 }
 
@@ -69,14 +77,21 @@ async function TambahSurat() {
 <template>
 
 <div class="w-[100%] p-2">
-  <InputText
-    id="noSurat" 
-    label="noSurat" 
-    v-model="payloadAddSurat.noSurat" 
-    placeholder="Nomor Surat" 
-  />
 
-  <div class="pb-10">
+    <InputText
+      id="noSurat" 
+      label="noSurat" 
+      v-model="payloadAddSurat.noSurat" 
+      placeholder="Nomor Surat" 
+    />
+
+    <InputNumber
+      id="noSurat" 
+      label="noSurat" 
+      v-model="payloadAddSurat.nik" 
+      placeholder="Nik Pengirim" 
+    />
+
     <TextArea 
       id="perihal" 
       label="perihal" 
@@ -126,7 +141,7 @@ async function TambahSurat() {
         @click="TambahSurat"
       />
     </div>
-  </div>
+
 </div>
 
 

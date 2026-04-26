@@ -1,4 +1,5 @@
 interface bukuAgenda{
+    id: number;
     idAgenda: string;
     noSurat: string;
     nik: string;
