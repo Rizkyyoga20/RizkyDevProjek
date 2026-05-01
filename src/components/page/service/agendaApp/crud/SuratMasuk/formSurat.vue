@@ -18,9 +18,6 @@ const maxId = SuratAgendaStore.ListAgenda.length === 0 ? 0 :
               ));
 const newId = maxId + 1;
 
-const tujuanSurat = ref('');
-const jenisSurat = ref('');
-
 const tujuanOption = ref([
   { value: 'Pangdam', text: 'Pangdam' },
   { value: 'Kesdam', text: 'Kesdam' },
@@ -42,14 +39,14 @@ const jenisOption = ref([
 
 const payloadAddSurat = reactive<Omit<bukuAgenda, 'idAgenda' | 'tglAgenda'>>({
   id: newId ,
-  noSurat: '1/DBM',
-  nik: '8378463463746',
-  tglSurat: '21/04/2026',
-  jenisSurat: 'ND/SE/SI',
-  pengirim: 'Andini',
-  perihal: 'jkjds djsdnskd',
-  tujuan: 'dsad skkdsa',
-  statusKirim: 'Baru Masuk'
+  noSurat: '',
+  nik: '',
+  tglSurat: '',
+  jenisSurat: '',
+  pengirim: '',
+  perihal: '',
+  tujuan: '',
+  statusKirim: ''
 })
 
 async function TambahSurat() {
@@ -86,8 +83,8 @@ async function TambahSurat() {
     />
 
     <InputNumber
-      id="noSurat" 
-      label="noSurat" 
+      id="nik" 
+      label="nik" 
       v-model="payloadAddSurat.nik" 
       placeholder="Nik Pengirim" 
     />
@@ -110,8 +107,8 @@ async function TambahSurat() {
       class="pt-3 pb-3" 
       id="tujuanSurat" 
       label="-- Tujuan Surat --" 
-      :modelValue="tujuanSurat" 
-      @update:modelValue="tujuanSurat = $event" 
+      :modelValue="payloadAddSurat.tujuan" 
+      @update:modelValue="payloadAddSurat.tujuan = $event" 
       :options="tujuanOption" 
     />
 
@@ -119,8 +116,8 @@ async function TambahSurat() {
       class="pt-3 pb-3" 
       id="jenisSurat" 
       label="-- Jenis Surat --" 
-      :modelValue="jenisSurat" 
-      @update:modelValue="jenisSurat = $event" 
+      :modelValue="payloadAddSurat.jenisSurat" 
+      @update:modelValue="payloadAddSurat.jenisSurat = $event" 
       :options="jenisOption" 
     />
     <p

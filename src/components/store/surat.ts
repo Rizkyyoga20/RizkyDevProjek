@@ -22,7 +22,7 @@ export const useSuratStore = defineStore('Agenda', () => {
   const Search = ref('');
   //const idAgenda = ref();
   const MinPage = ref(1);
-  const MaxPage = ref(10);
+  const MaxPage = ref(5);
   const TotalPage = ListAgenda.value.length;
   const TotalPageStatusAgenda = statusSurat.value.statusSurat;
   const TotalPageDataAkun = akun.value.akun;
@@ -201,6 +201,7 @@ export const useSuratStore = defineStore('Agenda', () => {
         const data = await gasRequest('create', { data: JSON.stringify(payload) })
         ListAgenda.value.unshift(data)
         handleError('Data berhasil disimpan', { success: true })
+        window.history.go(0);    
         return data
       } catch (err: any) {
         console.error('Error dari GAS:', err)
