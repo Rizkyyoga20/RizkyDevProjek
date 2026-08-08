@@ -64,7 +64,7 @@
         >
 
             <img 
-                src="../../assets/img/0_77oK8ksWi2yKMQa9.jpg" 
+                src="../../assets/img/dashboard-app.JPG" 
                 style="
                     width:120px; 
                     height:120px; 
@@ -77,7 +77,7 @@
             <p 
                 class="text-center pt-0.5" 
                 style="font-size:15px; font-weight:bold;"
-            >Agenda App</p>
+            >Dashboard App</p>
         </RouterLink>
     </div>  
 </section>

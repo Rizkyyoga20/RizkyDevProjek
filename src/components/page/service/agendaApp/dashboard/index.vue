@@ -12,12 +12,16 @@
 
 <template>
     <div class="relative pb-1 bg-green-300">
-        <img class="w-12 m-3 float-start" src="../../../../../assets/img/logo-bukit-barisan.jpeg">
+        <img 
+          style="margin-top:75px;"
+          class="w-12 m-3 float-start" 
+          src="../../../../../assets/img/icon-pelanggan.png"
+        >
         <div 
           class="text-center bg-white w-[100%] text-red-700" 
-          style="font-weight:500; font-size:20px; padding:35px;"
+          style="font-weight:500; font-size:20px; padding:20px; padding-top:75px;"
         >
-          PENGAGENDAAN SURAT MASUK SETUMDAM I/BB
+          DASHBOARD APP 2026
         </div>
         <div class="grid lg:grid-cols-1 p-2">
           <div class="mt-20">

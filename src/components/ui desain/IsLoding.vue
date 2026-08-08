@@ -45,7 +45,7 @@
       <h4 
           class="text-green-900 text-center mt-4" 
           style="font-weight: 600; font-family:Comic Sans MS; font-size:15px;"
-      >Rika sinaga</h4>
+      >RizkyDevProjek</h4>
       </div>
   </div>
 

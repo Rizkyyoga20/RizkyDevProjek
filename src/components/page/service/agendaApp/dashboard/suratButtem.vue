@@ -86,7 +86,7 @@ watch( () => Modal.ModalId, (newValue) => {
     />
 
 
-    <div class="grid lg:grid-cols-5 gap-2 p-3 relative">
+    <div class="grid lg:grid-cols-4 gap-2 p-3 relative">
         <button 
             class="bg-green-200"
             @click="Modal.openModal('modalSuratMasuk')"
@@ -103,7 +103,7 @@ watch( () => Modal.ModalId, (newValue) => {
                     
             >3</div>
             <img src="../../../../../assets/img/icon-save.png" class="w-10 float-left m-2" />
-            <p class="p-3" style="font-weight:500; font-size:20px; text-align:left;">Surat Masuk</p>
+            <p class="p-3" style="font-weight:500; font-size:20px; text-align:left;">Pesanan Masuk</p>
         </button>
 
         <button 
@@ -122,7 +122,7 @@ watch( () => Modal.ModalId, (newValue) => {
                     
             >5</div>
             <img src="../../../../../assets/img/data.png" class="w-10 float-left m-2" />
-            <p class="p-3" style="font-weight:500; font-size:20px; text-align:left;">Approved</p>
+            <p class="p-3" style="font-weight:500; font-size:20px; text-align:left;">Laporan</p>
         </button>
 
         <button 
@@ -141,27 +141,9 @@ watch( () => Modal.ModalId, (newValue) => {
                     
             >5</div>
             <img src="../../../../../assets/img/chat.png" class="w-10 float-left m-2" />
-            <p class="p-3" style="font-weight:500; font-size:20px; text-align:left;">Masih proses</p>
+            <p class="p-3" style="font-weight:500; font-size:20px; text-align:left;">Catatan</p>
         </button>
 
-        <button
-            class="bg-green-200"
-            @click="Modal.openModal('modalDitolak')"
-        >
-            <div 
-                class="
-                    float-right 
-                    bg-red-400
-                "
-                style="
-                    padding:3px 7px;
-                    border-radius:0px 0px 0px 10px;
-                "
-                        
-            >2</div>
-                <img src="../../../../../assets/img/icon-pelanggan.png" class="w-10 float-left m-2" />
-                <p class="p-3" style="font-weight:500; font-size:20px; text-align:left;">Ditolak</p>
-        </button>
 
         <button 
             class="bg-green-200"
@@ -183,7 +165,7 @@ watch( () => Modal.ModalId, (newValue) => {
                     src="../../../../../assets/img/icon-pelanggan.png" 
                     class="w-10 float-left m-2" 
                 />
-                <p class="p-3" style="font-weight:500; font-size:20px; text-align:left;">Akun</p>
+                <p class="p-3" style="font-weight:500; font-size:20px; text-align:left;">Pelanggan</p>
         </button>
 
     </div>
