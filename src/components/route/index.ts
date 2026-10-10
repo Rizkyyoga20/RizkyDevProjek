@@ -2,6 +2,14 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../page/index.vue'
 import MenusApp from '../page/service/munusApp/index.vue'
 import AgendaApp from '../page/service/agendaApp/dashboard/index.vue'
+
+import AdminApp from '../page/service/adminApp/index.vue'
+import ExportAdm from '../page/service/adminApp/Export/index.vue'
+import PesananAdm from '../page/service/adminApp/Pesanan/index.vue'
+import CatatanAdm from '../page/service/adminApp/Catatan/index.vue'
+import ProdukAdm from '../page/service/adminApp/Produk/index.vue'
+
+
 //import AgendaApp from '../page/service/agendaApp/crud/Akun/login.vue'
 //import About from '../page/about/index.vue'
 //import Galery from '../page/galery/index.vue'
@@ -11,6 +19,14 @@ const routes = [
   { path: '/', name: 'home', component: Home },
   { path: '/MenusApp', name: 'menusApp', component: MenusApp },
   { path: '/AgendaApp', name: 'agendaApp', component: AgendaApp },
+
+  { path: '/AdminApp', name: 'adminApp', component: AdminApp },
+  { path: '/AdminApp/Export', name: 'exportAdm', component: ExportAdm },
+  { path: '/AdminApp/Pesanan', name: 'pesananAdm', component: PesananAdm },
+  { path: '/AdminApp/Catatan', name: 'catatanAdm', component: CatatanAdm },
+  { path: '/AdminApp/Produk', name: 'produkAdm', component: ProdukAdm },
+
+
   //{ path: '/galery', name: 'galery', component: Galery },
   //{ path: '/search', name: 'search', component: Seaceh },
 ]

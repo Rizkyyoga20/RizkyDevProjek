@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useMenu1Store } from '../../../../store/menu';
+import { useMenuStore } from '../../../../store/menu';
 import Action from './action.vue';
-const Menu1Store = useMenu1Store();
+const Menu1Store = useMenuStore();
 </script>
 <template>
     <div>

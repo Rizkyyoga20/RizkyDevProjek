@@ -49,7 +49,7 @@
         </RouterLink>
 
         <RouterLink 
-            to="/AgendaApp" 
+            to="/AdminApp" 
             class="
                 bg-yellow-200 
                 rounded-md

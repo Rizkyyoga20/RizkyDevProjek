@@ -5,9 +5,9 @@ export const useModalPopUp = defineStore('ModalPopUp', () => {
   
   const modals = ref<HTMLElement[]>([]);
   const body = ref<HTMLElement>(document.body);    
-  const ModalId = ref<number>();  
+  const ModalId = ref<string>();  
 
-  const openModal = (modalId: string | number, id?: number ) => {
+  const openModal = (modalId: string, id?: string) => {
     //const modal = document.getElementById(modalId);
     const modal = document.getElementById(`${modalId}`);
     if (modal) {
@@ -18,7 +18,7 @@ export const useModalPopUp = defineStore('ModalPopUp', () => {
     }
   };
   
-  const closeModal = (modalId: string | number, id?: number) => {
+  const closeModal = (modalId: string, id?: string) => {
     //const modal = document.getElementById(modalId);
     const modal = document.getElementById(`${modalId}`);
     if (modal) {

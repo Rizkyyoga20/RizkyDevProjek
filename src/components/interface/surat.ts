@@ -13,8 +13,8 @@ interface bukuAgenda{
 }
 
 interface storeStatus{
-    id?: Number;  
-    idBukuAgenda?: Number;
+    id?: number;  
+    idBukuAgenda?: number;
     status: string;
     keterangan: string;
     time: string;

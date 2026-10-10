@@ -3,15 +3,14 @@
   import { useMenuStore } from "../store/menu";
   const menusStore = useMenuStore();
   const Pesan = ref(0);
-  const total = menusStore.total()
 
-  async function TambahPesanan() {
-    return total
-    return Pesan.value++
+  function TambahPesanan(id: string) {
+    menusStore.addPesanan(id)
   };
 
+
   onMounted(() => {
-    menusStore.ListMenus2();
+    menusStore.getDaftarMenus();
   });
 
 </script>
@@ -27,9 +26,9 @@
     justify-center
     "
   >
-  
+
     <div
-      v-for="(ListMenu1, index) in menusStore.readData2" :key="index" 
+      v-for="(ListMenu1, index) in menusStore.Pagidation" :key="ListMenu1.idMeal"
       class="
         rounded 
         overflow-hidden 
@@ -107,7 +106,10 @@
         </div>
         </a>
         <p class="text-gray-500 text-sm">
-          <button class="p-1 m-1 rounded-sm" index @click="TambahPesanan">+ {{index}}</button>
+          <button 
+            class="p-1 m-1 rounded-sm" 
+            index @click="TambahPesanan(ListMenu1.idMeal)"
+          >+ {{index}}</button>
           <input 
             class="
               rounded-sm 

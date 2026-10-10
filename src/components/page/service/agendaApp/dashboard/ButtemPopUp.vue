@@ -1,27 +1,27 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { useModalPopUp } from '../../../../store/ModalPopUp';
-import SuratMasuk from "../crud/SuratMasuk/index.vue";
+import ExportLaporan from "../crud/Produk/Laporan/Modal.vue";
 import ApprovedSurat from "../crud/Approved/ListData.vue";
 import MasihProses from "../crud/Masih Proses/modal.vue";
 import Ditolak from "../crud/Ditolak/modal.vue";
-import Akun from "../crud/Akun/modal.vue";
+import MenuProduk from '../crud/Produk/Modal.vue';
 
 
 const Modal = useModalPopUp();
 
-const showSuratMasuk = ref(false);
+const showExportLaporan = ref(false);
 const showApproved = ref(false);
 const showMasihProses = ref(false);
 const showDitolak = ref(false);
-const showAkun = ref(false);
+const showMenuProduk = ref(false);
 
 watch( () => Modal.ModalId, (newValue) => {
-    if (String(newValue) === 'modalSuratMasuk') {
-      showSuratMasuk.value = true;
-      showSuratMasuk.value = false;
+    if (String(newValue) === 'modalExportLaporan') {
+      showExportLaporan.value = true;
+      showExportLaporan.value = false;
     } else {
-      showSuratMasuk.value = false;
+      showExportLaporan.value = false;
     }
 
     if (String(newValue) === 'modalApproved') {
@@ -45,11 +45,11 @@ watch( () => Modal.ModalId, (newValue) => {
       showDitolak.value = false;
     }
 
-    if (String(newValue) === 'modalAkun') {
-      showAkun.value = true;
-      showAkun.value = false;
+    if (String(newValue) === 'modalMenuProduk') {
+      showMenuProduk.value = true;
+      showMenuProduk.value = false;
     } else {
-      showAkun.value = false;
+      showMenuProduk.value = false;
     }
 
   }
@@ -60,13 +60,13 @@ watch( () => Modal.ModalId, (newValue) => {
 
 <template>
 
-    <SuratMasuk
-      v-show="showSuratMasuk" 
+    <ExportLaporan
+      v-show="showExportLaporan" 
       :ModalID="Modal.ModalId ?? 0" 
     />
 
     <ApprovedSurat
-      v-show="showSuratMasuk" 
+      v-show="showApproved" 
       :ModalID="Modal.ModalId ?? 0" 
     />
 
@@ -80,16 +80,16 @@ watch( () => Modal.ModalId, (newValue) => {
       :ModalID="Modal.ModalId ?? 0" 
     />
 
-    <Akun
-      v-show="showAkun" 
+    <MenuProduk
+      v-show="showMenuProduk" 
       :ModalID="Modal.ModalId ?? 0" 
     />
 
 
-    <div class="grid lg:grid-cols-4 gap-2 p-3 relative">
+    <div class="grid lg:grid-cols-4 gap-2 p-3 relative w-full">
         <button 
             class="bg-green-200"
-            @click="Modal.openModal('modalSuratMasuk')"
+            @click="Modal.openModal('modalExportLaporan')"
         >
             <div 
                 class="
@@ -103,7 +103,7 @@ watch( () => Modal.ModalId, (newValue) => {
                     
             >3</div>
             <img src="../../../../../assets/img/icon-save.png" class="w-10 float-left m-2" />
-            <p class="p-3" style="font-weight:500; font-size:20px; text-align:left;">Pesanan Masuk</p>
+            <p class="p-3" style="font-weight:500; font-size:20px; text-align:left;">Export</p>
         </button>
 
         <button 
@@ -122,7 +122,7 @@ watch( () => Modal.ModalId, (newValue) => {
                     
             >5</div>
             <img src="../../../../../assets/img/data.png" class="w-10 float-left m-2" />
-            <p class="p-3" style="font-weight:500; font-size:20px; text-align:left;">Laporan</p>
+            <p class="p-3" style="font-weight:500; font-size:20px; text-align:left;">Pesanan</p>
         </button>
 
         <button 
@@ -147,7 +147,7 @@ watch( () => Modal.ModalId, (newValue) => {
 
         <button 
             class="bg-green-200"
-            @click="Modal.openModal('modalAkun')"
+            @click="Modal.openModal('modalMenuProduk')"
         >
             <div 
                 class="
@@ -160,12 +160,12 @@ watch( () => Modal.ModalId, (newValue) => {
                     border-radius:0px 0px 0px 10px;
                 "
                         
-            >3</div>
+            >4</div>
                 <img 
                     src="../../../../../assets/img/icon-pelanggan.png" 
                     class="w-10 float-left m-2" 
                 />
-                <p class="p-3" style="font-weight:500; font-size:20px; text-align:left;">Pelanggan</p>
+                <p class="p-3" style="font-weight:500; font-size:20px; text-align:left;">Produk</p>
         </button>
 
     </div>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
-import { useMenu1Store } from '../../../../store/menu';
+import { useMenuStore } from '../../../../store/menu';
 import { AddPelanggan } from '../../../../interface/data';
 import InputText from '../../../../ui desain/InputText.vue';
 import InputNumber from '../../../../ui desain/InputNumber.vue';
@@ -8,13 +8,13 @@ import TextArea from '../../../../ui desain/TextArea.vue';
 import FromBottem from '../../../../ui desain/FromBottem.vue';
 
 const props = defineProps({
-    idPelanggan: { type: Number, required: true },
+    idPelanggan: { type: String, required: true },
 });
 
-const Menu1Store = useMenu1Store();
+const Menu1Store = useMenuStore();
 
 const payload = reactive<AddPelanggan>({
-  id: 0,
+  id: '',
   nama: '',
   alamat: '',
   noTelepon: '',
@@ -25,13 +25,13 @@ const payload = reactive<AddPelanggan>({
 async function EditPelanggan() {
   try {
     const pelanggan: AddPelanggan = {
-      id: Number(payload.id),
+      id: String(payload.id),
       nama: String(payload.nama),
       alamat: String(payload.alamat),
       noTelepon: String(payload.noTelepon),
       email: String(payload.email),
     };
-    await Menu1Store.handleUpdateDataPelanggan(props.idPelanggan, pelanggan);
+    await Menu1Store.handleUpdateDataPelanggan(Number(props.idPelanggan), pelanggan);
   } catch (error) {
     console.error(error);
   }

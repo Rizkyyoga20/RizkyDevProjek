@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useMenu1Store } from "../../../../store/menu";
+import { useMenuStore } from "../../../../store/menu";
 import Search from "../../../../ui desain/search.vue";
 import Pagidation from "../../../../ui desain/pagidation.vue";
 import { ref, watch } from "vue";
 import { useModalPopUp } from "../../../../store/ModalPopUp";
 import TabPelanggan from "../pelanggan/tabs.vue";
 
-const menusStore = useMenu1Store();
+const menusStore = useMenuStore();
 const Modal = useModalPopUp();
 
 const showTambahPelanggan = ref(false);

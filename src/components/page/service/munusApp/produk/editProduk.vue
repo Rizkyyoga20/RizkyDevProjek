@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive, watch } from 'vue';
-import { useMenu1Store } from '../../../../store/menu';
+import { useMenuStore } from '../../../../store/menu';
 import FromBottem from '../../../../ui desain/FromBottem.vue';
 import { AddHarga } from '../../../../interface/data';
 import { useModalPopUp } from '../../../../store/ModalPopUp';
@@ -8,12 +8,12 @@ import InputNumber from '../../../../ui desain/InputNumber.vue';
 import Addproduk from './addProduk.vue';
 //import InputText from '../../../../ui desain/InputText.vue';
 
-const Menu1Store = useMenu1Store();
+const Menu1Store = useMenuStore();
 const Modal = useModalPopUp();
 
 const props = defineProps({
   ModalID: {
-    type: Number,
+    type: String,
     required: true,
   },
 });
@@ -31,7 +31,7 @@ async function Produk() {
       harga: String(payload.harga),
     };
     console.log(editHarga);
-    await Menu1Store.handleUpdateDataProduks(props.ModalID, editHarga);
+    await Menu1Store.handleUpdateDataProduks(Number(props.ModalID), editHarga);
   } catch (error) {
     console.error(error);
   }

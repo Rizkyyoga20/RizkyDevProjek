@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import { useModalPopUp } from '../../../../store/ModalPopUp';
-import { useMenu1Store } from '../../../../store/menu';
+import { useMenuStore } from '../../../../store/menu';
 const Modal = useModalPopUp();
-const Menu1Store = useMenu1Store();
+const Menu1Store = useMenuStore();
 
 onMounted(() => {
     Menu1Store.getDaftarMenus();
@@ -123,7 +123,7 @@ function cetakLaporan() {
                 <b>Waktu : </b>{{ List.time }}<br>
 
                 <div 
-                    v-for="(ListMenus, index) in Menu1Store.ReadMenusByIdPesanan(Number(List.idProdukPesanan))" 
+                    v-for="(ListMenus, index) in Menu1Store.ReadMenusByIdPesanan(List.idProdukPesanan)" 
                     :key="index"
                 >
                         <img :src="''+ListMenus.strMealThumb" class="lg:w-1/4 w-[50%] mt-5"/>
@@ -133,7 +133,7 @@ function cetakLaporan() {
                 </div>
 
                 <div 
-                    v-for="(ListPelanggan, index) in Menu1Store.ReadPelangganById(Number(List.idPelanggan))" 
+                    v-for="(ListPelanggan, index) in Menu1Store.ReadPelangganById(List.idPelanggan)" 
                     :key="index"
                 >
                         <b>Nama : </b>{{ ListPelanggan.nama }}<br>

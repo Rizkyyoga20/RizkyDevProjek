@@ -1,11 +1,11 @@
 interface DataMenu {
-  idMeal: number;
+  idMeal: string;
   strMeal: string;
   strMealThumb: string;
 }
 
 interface UnsplasPhotos {
-  id: string;
+  id?: string;
   urls: {
     raw: string;
     full: string;
@@ -19,7 +19,7 @@ interface UnsplasPhotos {
 }
 
 interface AddPelanggan{
-  id?: number;
+  id?: string;
   nama: string;
   alamat: string;
   noTelepon: string;
@@ -27,16 +27,16 @@ interface AddPelanggan{
 }
 
 interface AddHarga{
-  id?:number;  
-  idProduk?: number;
+  id?: string;  
+  idProduk?: string ;
   harga: string;
   stok: string;
 }
 
 interface Pesanan {
-  id?:number;
-  idProdukPesanan: number;
-  idPelanggan: number;
+  id?: string;
+  idProdukPesanan?: string;
+  idPelanggan?: number;
   totalBayar: number;
   jumlah: number;
   status: string;

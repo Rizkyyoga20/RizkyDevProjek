@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, reactive, ref, watchEffect } from 'vue';
 import { useModalPopUp } from '../../../../store/ModalPopUp';
-import { useMenu1Store } from '../../../../store/menu';
+import { useMenuStore } from '../../../../store/menu';
 import FromBottem from '../../../../ui desain/FromBottem.vue';
 import { Pesanan } from '../../../../interface/data';
 import HargaProduk from '../produk/hargaProduk.vue';
@@ -9,7 +9,7 @@ import RadioButtomStyle from '../../../../ui desain/radioButtomStyle.vue';
 import RadioButtom from '../../../../ui desain/radioButtom.vue';
 
 const Modal = useModalPopUp();
-const Menu1Store = useMenu1Store();
+const Menu1Store = useMenuStore();
 const selectedPelanggan = ref(null);
 
 const IDPeesanan = Menu1Store.dataMenus.length === 0 ? 0 : 
@@ -21,7 +21,7 @@ const IDPeesanan = Menu1Store.dataMenus.length === 0 ? 0 :
 const newIDPesanan = IDPeesanan + 1;
 
 const props = defineProps({
-    ModalID: { type: Number, required: true },
+    ModalID: { type: String, required: true },
 });
 
 const pesananOption = ref([
@@ -81,7 +81,7 @@ async function PesanMenu() {
   try {
     const pesanMenu: Pesanan = {
       id: Number(payload.id),
-      idProdukPesanan: Number(props.ModalID),
+      idProdukPesanan: String(props.ModalID),
       idPelanggan: Number(payload.idPelanggan),
       jumlah: Number(payload.jumlah),
       totalBayar: Number(payload.totalBayar),

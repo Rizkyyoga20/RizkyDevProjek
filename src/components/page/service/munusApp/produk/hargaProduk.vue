@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useMenu1Store } from "../../../../store/menu";
-const menusStore = useMenu1Store();
+import { useMenuStore } from "../../../../store/menu";
+const menusStore = useMenuStore();
 
 const props = defineProps({
-  idProduk: { type: Number, required: true },
+  idProduk: { type:String, required: true },
 });
 
 const Produks = computed(() => {
-  return menusStore.ReadProduksByIdProduk(Number(props.idProduk));
+  return menusStore.ReadProduksByIdProduk(props.idProduk);
 });
 </script>
 

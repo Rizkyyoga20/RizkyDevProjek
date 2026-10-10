@@ -6,7 +6,7 @@ import { ResponseMenusApi, ResponseUnsplasApi } from "../server/res";
 import { menuApi, unsplashApi } from '../server/api/menu'
 import { useStore } from "./menuDB";
 
-export const useMenu1Store = defineStore('Menus', () => {
+export const useMenuStore = defineStore('Menus', () => {
 
   //state
   const MenuSeafood = useLocalStorage<ResponseMenusApi<DataMenu[]>>('Menu1', {
@@ -46,6 +46,21 @@ export const useMenu1Store = defineStore('Menus', () => {
       showAlert.value = false;
     }, 2000);
   }
+
+
+
+
+
+  const Pesanan = ref<Record<string, number>>({})
+
+  const total = computed(() => {
+    return Object.values(Pesanan.value).reduce((sum, qty) => sum + qty, 0)
+  })
+
+  function addPesanan(id: string){
+    Pesanan.value[id] = (Pesanan.value[id] || 0) + 1
+  }
+
   //akhir notif
 
   function handleCreateDataMenus(data: Pesanan) {
@@ -86,7 +101,7 @@ export const useMenu1Store = defineStore('Menus', () => {
 
   function handleCreateDataProduks(data: AddHarga) {
     if (
-        data.idProduk && typeof data.idProduk === 'number' && 
+        data.idProduk && typeof data.idProduk === 'string' && 
         data.harga && typeof data.harga === 'string' && 
         data.stok && typeof data.stok === 'string'
     ){
@@ -203,30 +218,30 @@ export const useMenu1Store = defineStore('Menus', () => {
     );
   });
       
-  const ReadMenusById = (id?: number) => {
+  const ReadMenusById = (id?: string) => {
     if (id === undefined) return [];
     return Pagidation.value.filter((menus) => menus.idMeal === id);
   };
 
-  const ReadMenusByIdPesanan = (id?: number) => {
+  const ReadMenusByIdPesanan = (id?: string) => {
     if (id === undefined) return [];
     const data = Pagidation.value.find((menus) => menus.idMeal === id);
     return data ? [data] : [];
   };
 
-  const ReadProduksById = (id?: number) => {
+  const ReadProduksById = (id?: string) => {
     if (id === undefined) return [];
     const foundProduk = dataProduks.find((menus: AddHarga) => menus.id === id);
     return foundProduk ? [foundProduk] : [];
   };
 
-  const ReadProduksByIdProduk = (id?: number) => {
+  const ReadProduksByIdProduk = (id?: string) => {
     if (id === undefined) return [];
     const produk = dataProduks.find((menus: AddHarga) => menus.idProduk === id);
     return produk ? [produk] : [];
   };
 
-  const ReadPelangganById = (id?: number) => {
+  const ReadPelangganById = (id?: string) => {
     if (id === undefined) return [];
     const pelanggan = dataPelanggan.find((pel: AddPelanggan) => pel.id === id);
     return pelanggan ? [pelanggan] : [];
@@ -244,7 +259,7 @@ export const useMenu1Store = defineStore('Menus', () => {
   async function getDaftarMenus() {
     try {
       const response = await DaftarMenus();
-      MenuSeafood.value = response;
+      MenuSeafood.value = response || [];
     } catch (error) {
       const err = error as Error;
       console.error('Error:', err.message);
@@ -288,6 +303,9 @@ export const useMenu1Store = defineStore('Menus', () => {
     dataProduks,
     dataPelanggan,
 
+    total,
+    addPesanan,
+
     GetTotalPage,
     Pagidation,
     filteredMenus,
@@ -326,7 +344,7 @@ export const useMenu1Store = defineStore('Menus', () => {
 
 
 if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useMenu1Store, import.meta.hot))
+  import.meta.hot.accept(acceptHMRUpdate(useMenuStore, import.meta.hot))
 }
 
 

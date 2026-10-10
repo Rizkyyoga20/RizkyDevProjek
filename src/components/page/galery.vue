@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import { useMenu1Store } from '../store/menu';
+import { useMenuStore } from '../store/menu';
 
-const menusStore = useMenu1Store();
+const menusStore = useMenuStore();
 onMounted(() => {
     menusStore.getDaftarUnsplas();
 });

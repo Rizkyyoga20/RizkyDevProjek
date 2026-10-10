@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from "vue";
-import { useMenu1Store } from "../../../../store/menu";
+import { useMenuStore } from "../../../../store/menu";
 import ModalPesanan from "../pesanan/modalPesanan.vue";
 import { useModalPopUp } from "../../../../store/ModalPopUp";
 import Notif from "../../../../ui desain/Notif.vue";
 import EditProduk from "../produk/editProduk.vue";
 import HargaProduk from "../produk/hargaProduk.vue";
-const menusStore = useMenu1Store();
+const menusStore = useMenuStore();
 
 const Modal = useModalPopUp();
 
@@ -44,8 +44,8 @@ onMounted(() => {
         :showAlert="menusStore.showAlert" 
         :alertMessage="menusStore.alertMessage" 
     />
-    <ModalPesanan v-show="showModalPesanan" :ModalID="Modal.ModalId ?? 0" />
-    <EditProduk v-show="showModalAddProduk" :ModalID="Modal.ModalId ?? 0" />
+    <ModalPesanan v-show="showModalPesanan" :ModalID="String(Modal.ModalId ?? '')" />
+    <EditProduk v-show="showModalAddProduk" :ModalID="String(Modal.ModalId ?? '')" />
 
 
     <h2 class="text-2xl font-bold text-black text-center" style="margin-top:75px;">
@@ -167,9 +167,9 @@ onMounted(() => {
             <div  class="pl-5 pr-5" style="min-height:75px;">
                 <button 
                     class="bg-blue-600 rounded-sm float-end"
-                    @click="Modal.openModal('modalAddProduk', Number(ListMenu1.idMeal))"
+                    @click="Modal.openModal('modalAddProduk', (ListMenu1.idMeal))"
                 ><img src="../../../../../assets/img/android-chrome-192x192.png" class="w-5"></button>
-                <HargaProduk :idProduk="Number(ListMenu1.idMeal)" />              
+                <HargaProduk :idProduk="ListMenu1.idMeal" />              
             </div>
 
             <div 

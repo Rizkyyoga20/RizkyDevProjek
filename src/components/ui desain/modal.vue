@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import useModal from '../interface/useModal'
+  import { useModal } from '../interface/useModal'
 
 
   const props = defineProps<{

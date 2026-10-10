@@ -2,10 +2,10 @@
 import { reactive, ref } from 'vue';
 import { storeStatus } from '../../../../interface/surat';
 import SelectOption from '../../../../ui desain/selectOption.vue';
-import { useMenu1Store } from '../../../../store/menu';
+import { useMenuStore } from '../../../../store/menu';
 
 const statusAgenda = ref('');
-const Menu1Store = useMenu1Store();
+const Menu1Store = useMenuStore();
 
 const statusOption = ref([
   { value: 'Sudah Selesai', text: 'Sudah Selesai' },
@@ -24,8 +24,9 @@ const newId = maxId + 1;
 
 const payload = reactive<storeStatus>({
   id: newId ,
-  idAgenda: 0,
+  idBukuAgenda: 0,
   status:'',
+  keterangan:'',
   time:'',
 });
 
@@ -34,8 +35,9 @@ async function TambahPelanggan() {
   try {
     const statusAgenda: storeStatus = {
       id: Number(payload.id),
-      idAgenda: Number(payload.idAgenda),
+      idBukuAgenda: Number(payload.idBukuAgenda),
       status: String(payload.status),
+      keterangan: String(payload.keterangan),
       time: String(payload.time),
     };
    await statusAgenda;

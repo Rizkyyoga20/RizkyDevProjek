@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
-import { useMenu1Store } from '../../../../store/menu';
+import { useMenuStore } from '../../../../store/menu';
 import FromBottem from '../../../../ui desain/FromBottem.vue';
 import { AddPelanggan } from '../../../../interface/data';
 import InputText from '../../../../ui desain/InputText.vue';
 import InputNumber from '../../../../ui desain/InputNumber.vue';
 import TextArea from '../../../../ui desain/TextArea.vue';
 
-const Menu1Store = useMenu1Store();
+const Menu1Store = useMenuStore();
 const maxId = Menu1Store.dataPelanggan.length === 0 ? 0 : 
               Math.max(...Menu1Store.dataPelanggan.map(
                 (
@@ -18,7 +18,7 @@ const newId = maxId + 1;
 
 
 const payload = reactive<AddPelanggan>({
-  id: newId,
+  id: String(newId),
   nama: '',
   alamat: '',
   noTelepon: '',
@@ -29,7 +29,7 @@ const payload = reactive<AddPelanggan>({
 async function TambahPelanggan() {
   try {
     const pelanggan: AddPelanggan = {
-      id: Number(payload.id),
+      id: String(payload.id),
       nama: String(payload.nama),
       alamat: String(payload.alamat),
       noTelepon: String(payload.noTelepon),

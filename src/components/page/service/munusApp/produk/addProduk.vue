@@ -1,18 +1,19 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
-import { useMenu1Store } from '../../../../store/menu';
+import { useMenuStore } from '../../../../store/menu';
 import FromBottem from '../../../../ui desain/FromBottem.vue';
 import { AddHarga } from '../../../../interface/data';
-import InputNumber from '../../../../ui desain/InputNumber.vue';
+import InputText from '../../../../ui desain/InputText.vue';
 
-const Menu1Store = useMenu1Store();
+const Menu1Store = useMenuStore();
 
 const props = defineProps({
-    idProduk: { type: Number, required: true },
+    idProduk: { type: String, required: true },
 });
 
 const payload = reactive<AddHarga>({
-  idProduk: 0,
+  id: '',
+  idProduk: '',
   stok: '',
   harga: '',
 });
@@ -21,7 +22,8 @@ const payload = reactive<AddHarga>({
 async function addProduk() {
   try {
     const addHarga: AddHarga = {
-      idProduk: Number(props.idProduk),
+      id: '',
+      idProduk: String(props.idProduk),
       stok: String(payload.stok),
       harga: String(payload.harga),
     };
@@ -35,15 +37,15 @@ async function addProduk() {
 
 <template>
   <div>
-      <InputNumber 
-        id="stok" 
-        label="stok" 
-        v-model="payload.stok" 
-        @input="payload.stok"
-        placeholder="stok Produk" 
-      />
+
+    <InputText
+      id="stok" 
+      label="stok" 
+      v-model="payload.stok" 
+      placeholder="Stok" 
+    />
   
-      <InputNumber 
+      <InputText 
         id="harga" 
         label="harga" 
         v-model="payload.harga"
